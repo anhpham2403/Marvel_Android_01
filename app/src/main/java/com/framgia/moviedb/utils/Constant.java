@@ -15,8 +15,9 @@ public final class Constant {
     public static final String UP_COMING = "Up Coming";
     public static final String POPULAR = "Popular";
     public static final String TOP_RATE = "Top Rate";
-    public static final String GENRES = "Genres";
+    public static final String GENRES = "Genre";
     public static final String FAVORITE = "Favorite";
+
     private Constant() {
     }
 }
