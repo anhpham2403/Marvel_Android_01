@@ -6,7 +6,7 @@ package com.framgia.moviedb.screen;
 
 /**
  * BaseView
- * @Param <T> this is type paremeter
+ * @param <T> this is type paremeter
  */
 public interface BaseViewModel<T extends BasePresenter> {
 
