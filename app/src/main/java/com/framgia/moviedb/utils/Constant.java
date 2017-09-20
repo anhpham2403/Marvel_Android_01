@@ -18,7 +18,7 @@ public final class Constant {
     public static final String GENRES = "Genre";
     public static final String FAVORITE = "Favorite";
     public static final String DATE_FORMAT_DDMMYYYY = "dd-mm-yyyy";
-    public static final String GET_MOVIES_FAIL = "Get movies fail";
+
     private Constant() {
     }
 }

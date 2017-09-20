@@ -10,7 +10,7 @@ import android.support.v4.app.FragmentManager;
 
 public class MainViewModel extends BaseObservable implements MainContract.ViewModel {
     private ViewPagerAdapter mAdapter;
-    private MainPresenter mMainPresenter;
+    private MainContract.Presenter mMainPresenter;
 
     public MainViewModel(FragmentManager fragmentManager) {
         mAdapter = new ViewPagerAdapter(fragmentManager);
@@ -21,7 +21,18 @@ public class MainViewModel extends BaseObservable implements MainContract.ViewMo
         return mAdapter;
     }
 
-    public void setMainPresenter(MainPresenter mainPresenter) {
-        mMainPresenter = mainPresenter;
+    @Override
+    public void onStart() {
+        mMainPresenter.onStart();
+    }
+
+    @Override
+    public void onStop() {
+        mMainPresenter.onStop();
+    }
+
+    @Override
+    public void setPresenter(MainContract.Presenter presenter) {
+        mMainPresenter = presenter;
     }
 }

@@ -14,8 +14,7 @@ import com.framgia.moviedb.R;
 
 public class GenresFragment extends Fragment {
     public static GenresFragment newInstance() {
-        GenresFragment fragment = new GenresFragment();
-        return fragment;
+        return new GenresFragment();
     }
 
     @Nullable

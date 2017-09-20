@@ -10,4 +10,14 @@ public class MainPresenter implements MainContract.Presenter {
     public MainPresenter(MainContract.ViewModel viewModel) {
         mViewModel = viewModel;
     }
+
+    @Override
+    public void onStart() {
+
+    }
+
+    @Override
+    public void onStop() {
+
+    }
 }
