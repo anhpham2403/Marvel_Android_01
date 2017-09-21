@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <data>
+        <variable
+            name="viewModel"
+            type="com.framgia.moviedb.screen.movies.MoviesViewModel"
+            />
+        <import type="com.framgia.moviedb.utils.LayoutManagers"/>
+    </data>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_movie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/materier_gray_300"
+        app:layoutManager="@{LayoutManagers.grid(viewModel.spanCount)}"
+        app:recyclerAdapter="@{viewModel.adapter}"
+        />
+</layout>

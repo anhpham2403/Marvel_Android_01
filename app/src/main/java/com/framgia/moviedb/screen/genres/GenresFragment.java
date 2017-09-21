@@ -1,4 +1,4 @@
-package com.framgia.moviedb.screen.main;
+package com.framgia.moviedb.screen.genres;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import com.framgia.moviedb.R;
 
 /**
- * Created by anh on 18/09/2017.
+ * Created by anh on 20/09/2017.
  */
 
 public class GenresFragment extends Fragment {

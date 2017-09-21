@@ -3,6 +3,8 @@ package com.framgia.moviedb.screen.main;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import com.framgia.moviedb.screen.genres.GenresFragment;
+import com.framgia.moviedb.screen.movies.MoviesFragment;
 import com.framgia.moviedb.utils.Constant;
 
 /**
@@ -24,11 +26,11 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
             case Constant.POPULAR_FRAGMENT:
             case Constant.TOP_RATE_FRAGMENT:
             case Constant.FAVORITE_FRAGMENT:
-                return ListMovieFragment.newInstance();
+                return MoviesFragment.newInstance();
             case Constant.GENRES_FRAGMENT:
                 return GenresFragment.newInstance();
             default:
-                return ListMovieFragment.newInstance();
+                return MoviesFragment.newInstance();
         }
     }
 
