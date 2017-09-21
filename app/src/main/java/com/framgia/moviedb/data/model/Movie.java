@@ -1,8 +1,12 @@
 package com.framgia.moviedb.data.model;
 
+import android.databinding.Bindable;
+import com.framgia.moviedb.utils.Constant;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by anh on 19/09/2017.
@@ -24,11 +28,12 @@ public class Movie extends BaseModel {
     @SerializedName("release_date")
     @Expose
     private Date mReleaseDate;
-    private String trailerUrl;
+    private String mTrailerUrl;
     private ProductorResponse mProductors;
     private ActorResponse mActors;
     private GenreResponse mIdGenres;
 
+    @Bindable
     public String getTitle() {
         return mTitle;
     }
@@ -43,14 +48,6 @@ public class Movie extends BaseModel {
 
     public void setVoteAverage(float voteAverage) {
         mVoteAverage = voteAverage;
-    }
-
-    public String getPosterUrl() {
-        return mPosterUrl;
-    }
-
-    public void setPosterUrl(String posterUrl) {
-        mPosterUrl = posterUrl;
     }
 
     public String getOverview() {
@@ -70,11 +67,20 @@ public class Movie extends BaseModel {
     }
 
     public String getTrailerUrl() {
-        return trailerUrl;
+        return mTrailerUrl;
     }
 
     public void setTrailerUrl(String trailerUrl) {
-        this.trailerUrl = trailerUrl;
+        this.mTrailerUrl = trailerUrl;
+    }
+
+    @Bindable
+    public String getPosterUrl() {
+        return mPosterUrl;
+    }
+
+    public void setPosterUrl(String posterUrl) {
+        mPosterUrl = posterUrl;
     }
 
     public ProductorResponse getProductors() {
@@ -99,5 +105,11 @@ public class Movie extends BaseModel {
 
     public void setIdGenres(GenreResponse idGenres) {
         mIdGenres = idGenres;
+    }
+
+    @Bindable
+    public String getDate() {
+        SimpleDateFormat dt = new SimpleDateFormat(Constant.DATE_FORMAT_DDMMYYYY, Locale.US);
+        return dt.format(mReleaseDate);
     }
 }
