@@ -7,25 +7,38 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.framgia.moviedb.R;
+import com.framgia.moviedb.data.source.MovieReposity;
+import com.framgia.moviedb.data.source.remote.MovieRemoteDataSource;
+import com.framgia.moviedb.data.source.remote.service.MovieServiceClient;
 import com.framgia.moviedb.databinding.FragmentMoviesBinding;
 import com.framgia.moviedb.screen.BaseFragment;
+import com.framgia.moviedb.utils.Constant;
 
 /**
  * Movies Screen.
  */
 public class MoviesFragment extends BaseFragment {
-
+    int category;
+    MoviesContract.Presenter presenter;
     private MoviesContract.ViewModel mViewModel;
+    private MovieReposity mMovieReposity;
 
-    public static MoviesFragment newInstance() {
-        return new MoviesFragment();
+    public static MoviesFragment newInstance(int category) {
+        MoviesFragment fragment = new MoviesFragment();
+        Bundle args = new Bundle();
+        args.putInt(Constant.MOVIES_BUNDLE, category);
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mViewModel = new MoviesViewModel(getContext());
-        MoviesContract.Presenter presenter = new MoviesPresenter(mViewModel);
+        mMovieReposity =
+                new MovieReposity(new MovieRemoteDataSource(MovieServiceClient.getInstance()));
+        category = getArguments().getInt(Constant.MOVIES_BUNDLE);
+        mViewModel = new MoviesViewModel(getContext(), category);
+        presenter = new MoviesPresenter(mViewModel, mMovieReposity);
         mViewModel.setPresenter(presenter);
     }
 
@@ -50,5 +63,11 @@ public class MoviesFragment extends BaseFragment {
     public void onStop() {
         mViewModel.onStop();
         super.onStop();
+    }
+
+    @Override
+    public void onDestroy() {
+        ((MoviesPresenter) presenter).onDestroy();
+        super.onDestroy();
     }
 }

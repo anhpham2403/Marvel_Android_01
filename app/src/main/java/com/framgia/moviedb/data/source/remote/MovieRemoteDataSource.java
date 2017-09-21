@@ -69,12 +69,7 @@ public class MovieRemoteDataSource extends BaseRemoteDataSource {
     }
 
     @Override
-    public Observable<List<Genre>> getDetail(int id, String apiKey) {
-        return mMovieApi.getDetail(id, apiKey).map(new Function<GenreResponse, List<Genre>>() {
-            @Override
-            public List<Genre> apply(GenreResponse genreResponse) throws Exception {
-                return genreResponse.getGenres();
-            }
-        });
+    public Observable<Movie> getDetail(int id, String apiKey) {
+        return mMovieApi.getDetail(id, apiKey);
     }
 }
