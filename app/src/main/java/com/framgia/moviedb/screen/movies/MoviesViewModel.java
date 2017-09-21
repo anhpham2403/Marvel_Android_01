@@ -47,6 +47,11 @@ public class MoviesViewModel extends BaseObservable implements MoviesContract.Vi
         notifyPropertyChanged(BR.adapter);
     }
 
+    @Bindable
+    public int getSpanCount() {
+        return SPAN_COUNT;
+    }
+
     @Override
     public void onGetMoviesSuccess(List<Movie> movies) {
         setAdapter(new MovieAdapter(movies));
@@ -55,10 +60,5 @@ public class MoviesViewModel extends BaseObservable implements MoviesContract.Vi
     @Override
     public void onGetMoviesFailure(String msg) {
         Toast.makeText(mContext, msg, Toast.LENGTH_LONG).show();
-    }
-
-    @Bindable
-    public int getSpanCount() {
-        return SPAN_COUNT;
     }
 }
