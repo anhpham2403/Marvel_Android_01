@@ -13,7 +13,7 @@ public final class MoviesPresenter implements MoviesContract.Presenter {
     private MoviesContract.ViewModel mViewModel;
     private List<Movie> mMovies;
 
-
+    
     public MoviesPresenter(MoviesContract.ViewModel viewModel) {
         mViewModel = viewModel;
     }
