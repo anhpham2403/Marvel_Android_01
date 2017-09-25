@@ -2,7 +2,7 @@
 <resources>
     <dimen name="card_movie_radius">0dp</dimen>
     <dimen name="card_movie_margin">10dp</dimen>
-    <dimen name="text_title">18sp</dimen>
+    <dimen name="text_title">15sp</dimen>
     <dimen name="movie_date_release">15sp</dimen>
     <dimen name="tab_indicator_height">5dp</dimen>
     <dimen name="image_poster_height">170dp</dimen>

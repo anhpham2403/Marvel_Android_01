@@ -22,15 +22,19 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case Constant.NOW_PLAYING_FRAGMENT:
+                return MoviesFragment.newInstance(Constant.NOW_PLAYING_FRAGMENT);
             case Constant.UP_COMING_FRAGMENT:
+                return MoviesFragment.newInstance(Constant.UP_COMING_FRAGMENT);
             case Constant.POPULAR_FRAGMENT:
+                return MoviesFragment.newInstance(Constant.POPULAR_FRAGMENT);
             case Constant.TOP_RATE_FRAGMENT:
+                return MoviesFragment.newInstance(Constant.TOP_RATE_FRAGMENT);
             case Constant.FAVORITE_FRAGMENT:
-                return MoviesFragment.newInstance();
+                return MoviesFragment.newInstance(Constant.FAVORITE_FRAGMENT);
             case Constant.GENRES_FRAGMENT:
                 return GenresFragment.newInstance();
             default:
-                return MoviesFragment.newInstance();
+                return MoviesFragment.newInstance(Constant.NOW_PLAYING_FRAGMENT);
         }
     }
 

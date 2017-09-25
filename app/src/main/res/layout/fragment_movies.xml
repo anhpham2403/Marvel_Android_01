@@ -9,13 +9,27 @@
             type="com.framgia.moviedb.screen.movies.MoviesViewModel"
             />
         <import type="com.framgia.moviedb.utils.LayoutManagers"/>
+        <import type="android.view.View"/>
     </data>
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_movie"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/materier_gray_300"
-        app:layoutManager="@{LayoutManagers.grid(viewModel.spanCount)}"
-        app:recyclerAdapter="@{viewModel.adapter}"
-        />
+        android:layout_height="match_parent"
+        >
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_movie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/materier_gray_300"
+            app:layoutManager="@{LayoutManagers.grid(viewModel.spanCount)}"
+            app:recyclerAdapter="@{viewModel.adapter}"
+            />
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="@{viewModel.complete ? View.GONE : View.VISIBLE}"
+            style="?android:attr/progressBarStyle"
+            />
+    </RelativeLayout>
 </layout>

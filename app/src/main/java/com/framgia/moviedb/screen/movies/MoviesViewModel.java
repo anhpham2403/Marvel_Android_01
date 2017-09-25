@@ -17,9 +17,13 @@ public class MoviesViewModel extends BaseObservable implements MoviesContract.Vi
     private MoviesContract.Presenter mPresenter;
     private MovieAdapter mAdapter;
     private Context mContext;
+    private int mCategory;
+    private boolean mIsComplete;
 
-    public MoviesViewModel(Context context) {
+    public MoviesViewModel(Context context, int category) {
         mContext = context;
+        mCategory = category;
+        mIsComplete = false;
     }
 
     @Override
@@ -35,6 +39,7 @@ public class MoviesViewModel extends BaseObservable implements MoviesContract.Vi
     @Override
     public void setPresenter(MoviesContract.Presenter presenter) {
         mPresenter = presenter;
+        mPresenter.getDataMovies(mCategory);
     }
 
     @Bindable
@@ -51,14 +56,25 @@ public class MoviesViewModel extends BaseObservable implements MoviesContract.Vi
     public int getSpanCount() {
         return SPAN_COUNT;
     }
+    @Bindable
+    public boolean isComplete() {
+        return mIsComplete;
+    }
+
+    public void setComplete(boolean complete) {
+        mIsComplete = complete;
+        notifyPropertyChanged(BR.complete);
+    }
 
     @Override
     public void onGetMoviesSuccess(List<Movie> movies) {
         setAdapter(new MovieAdapter(movies));
+        setComplete(true);
     }
 
     @Override
     public void onGetMoviesFailure(String msg) {
         Toast.makeText(mContext, msg, Toast.LENGTH_LONG).show();
+        setComplete(true);
     }
 }

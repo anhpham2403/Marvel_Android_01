@@ -6,6 +6,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 import com.framgia.moviedb.screen.main.ViewPagerAdapter;
+import com.framgia.moviedb.utils.Constant;
 import com.framgia.moviedb.utils.LayoutManagers;
 import com.squareup.picasso.Picasso;
 
@@ -34,15 +35,14 @@ public final class BindingUtils {
     }
 
     @BindingAdapter({ "bind:imageUrl" })
-    public static void loadImage(ImageView view, String imageUrl) {
+    public static void loadImage(ImageView view, String imagePath) {
+        String imageUrl = Constant.BASE_URL_IMAGE + imagePath;
         Picasso.with(view.getContext()).load(imageUrl).into(view);
     }
 
     @BindingAdapter("layoutManager")
     public static void setLayoutManager(RecyclerView recyclerView,
             LayoutManagers.LayoutManagerFactory layoutManagerFactory) {
-        if (recyclerView.getAdapter() != null) {
-            recyclerView.setLayoutManager(layoutManagerFactory.create(recyclerView));
-        }
+        recyclerView.setLayoutManager(layoutManagerFactory.create(recyclerView));
     }
 }

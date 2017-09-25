@@ -19,6 +19,8 @@ public final class Constant {
     public static final String FAVORITE = "Favorite";
     public static final String DATE_FORMAT_DDMMYYYY = "dd-mm-yyyy";
     public static final String BASE_URL = "https://api.themoviedb.org/3/";
+    public static final String MOVIES_BUNDLE = "movie";
+    public static final String BASE_URL_IMAGE = "https://image.tmdb.org/t/p/w300";
     private Constant() {
     }
 }

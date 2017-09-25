@@ -1,6 +1,7 @@
 package com.framgia.moviedb.data.source.remote.service;
 
 import com.framgia.moviedb.data.model.GenreResponse;
+import com.framgia.moviedb.data.model.Movie;
 import com.framgia.moviedb.data.model.MovieResponse;
 import io.reactivex.Observable;
 import retrofit2.http.GET;
@@ -27,6 +28,6 @@ public interface MovieApi {
     @GET("genre/movie/list")
     Observable<GenreResponse> getGenres(@Query("api_key") String apiKey);
 
-    @GET("genre/movie/{id}")
-    Observable<GenreResponse> getDetail(@Path("id") int id, @Query("api_key") String apiKey);
+    @GET("movie/{id}")
+    Observable<Movie> getDetail(@Path("id") int id, @Query("api_key") String apiKey);
 }

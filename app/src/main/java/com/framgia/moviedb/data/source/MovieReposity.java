@@ -43,7 +43,7 @@ public class MovieReposity implements MovieDataSource {
     }
 
     @Override
-    public Observable<List<Genre>> getDetail(int id, String apiKey) {
+    public Observable<Movie> getDetail(int id, String apiKey) {
         return mRemoteDataSource.getDetail(id, apiKey);
     }
 }

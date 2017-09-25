@@ -22,5 +22,6 @@ interface MoviesContract {
      * Presenter.
      */
     interface Presenter extends BasePresenter {
+        void getDataMovies(int category);
     }
 }
