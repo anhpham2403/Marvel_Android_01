@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <data>
+        <variable
+            name="viewModel"
+            type="com.framgia.moviedb.data.model.Genre"
+            />
+    </data>
+    <TextView
+        android:id="@+id/text_genre_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/item_genre_padding"
+        android:text="@{viewModel.name}"
+        android:textColor="@color/color_black"
+        android:textSize="@dimen/text_title"
+        android:textStyle="bold"
+        />
+</layout>

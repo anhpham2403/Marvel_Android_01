@@ -25,7 +25,6 @@ public class MoviesFragment extends BaseFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mViewModel = new MoviesViewModel(getContext());
-
         MoviesContract.Presenter presenter = new MoviesPresenter(mViewModel);
         mViewModel.setPresenter(presenter);
     }

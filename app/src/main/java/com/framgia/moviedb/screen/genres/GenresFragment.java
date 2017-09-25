@@ -1,26 +1,55 @@
 package com.framgia.moviedb.screen.genres;
 
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.framgia.moviedb.R;
+import com.framgia.moviedb.databinding.FragmentGenresBinding;
+import com.framgia.moviedb.screen.BaseFragment;
 
 /**
- * Created by anh on 20/09/2017.
+ * Genres Screen.
  */
+public class GenresFragment extends BaseFragment {
 
-public class GenresFragment extends Fragment {
+    private GenresContract.ViewModel mViewModel;
+
     public static GenresFragment newInstance() {
         return new GenresFragment();
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mViewModel = new GenresViewModel(getContext());
+
+        GenresContract.Presenter presenter = new GenresPresenter(mViewModel);
+        mViewModel.setPresenter(presenter);
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.list_movie, container, false);
+
+        FragmentGenresBinding binding =
+                DataBindingUtil.inflate(inflater, R.layout.fragment_genres, container, false);
+        binding.setViewModel((GenresViewModel) mViewModel);
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mViewModel.onStart();
+    }
+
+    @Override
+    public void onStop() {
+        mViewModel.onStop();
+        super.onStop();
     }
 }
