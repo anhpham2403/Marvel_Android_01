@@ -15,9 +15,11 @@ import java.util.List;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.BindingHolder> {
     private List<Movie> mMovies;
+    private OnItemClickListener mOnItemClickListener;
 
-    public MovieAdapter(List<Movie> movies) {
+    public MovieAdapter(List<Movie> movies, OnItemClickListener onItemClickListener) {
         mMovies = movies;
+        mOnItemClickListener = onItemClickListener;
     }
 
     @Override
@@ -25,7 +27,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.BindingHolde
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         ListItemMovieBinding binding =
                 DataBindingUtil.inflate(inflater, R.layout.list_item_movie, parent, false);
-        return new BindingHolder(binding);
+        return new BindingHolder(binding, mOnItemClickListener);
     }
 
     @Override
@@ -39,19 +41,30 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.BindingHolde
     }
 
     /**
+     * OnRecyclerViewItemClickListener
+     */
+    public interface OnItemClickListener {
+        void onItemClick(Movie movie);
+    }
+
+    /**
      * class holder
      */
     public static class BindingHolder extends RecyclerView.ViewHolder {
         private ListItemMovieBinding mBinding;
+        private OnItemClickListener mOnItemClickListener;
 
-        public BindingHolder(ListItemMovieBinding binding) {
+        public BindingHolder(ListItemMovieBinding binding,
+                OnItemClickListener onItemClickListener) {
             super(binding.getRoot());
             mBinding = binding;
+            mOnItemClickListener = onItemClickListener;
         }
 
         public void bind(Movie movie) {
             if (movie != null) {
                 mBinding.setViewModel(movie);
+                mBinding.setListenner(mOnItemClickListener);
                 mBinding.executePendingBindings();
             }
         }

@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">MovieDB</string>
     <string name="description_image_poster">poster</string>
+    <string name="button_add">add</string>
+    <string name="title_productor">Productor: </string>
+    <string name="title_actor">Actor: </string>
+    <string name="title_genres">Genres: </string>
 </resources>

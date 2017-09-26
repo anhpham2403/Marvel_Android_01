@@ -8,6 +8,10 @@
             name="viewModel"
             type="com.framgia.moviedb.data.model.Movie"
             />
+        <variable
+            name="listenner"
+            type="com.framgia.moviedb.screen.movies.MovieAdapter.OnItemClickListener"
+            />
     </data>
     <android.support.v7.widget.CardView
         android:id="@+id/card_view"
@@ -16,6 +20,7 @@
         android:layout_gravity="center"
         android:layout_margin="@dimen/card_movie_margin"
         app:cardCornerRadius="@dimen/card_movie_radius"
+        android:onClick="@{()->listenner.onItemClick(viewModel)}"
         >
         <RelativeLayout
             android:layout_width="match_parent"
@@ -30,14 +35,15 @@
                 android:contentDescription="@string/description_image_poster"
                 android:scaleType="fitXY"
                 app:imageUrl="@{viewModel.posterUrl}"
+
                 />
             <TextView
                 android:id="@+id/text_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/image_poster"
-                android:maxLines="1"
                 android:ellipsize="end"
+                android:maxLines="1"
                 android:paddingLeft="@dimen/card_movie_margin"
                 android:paddingRight="@dimen/card_movie_margin"
                 android:paddingTop="@dimen/card_movie_margin"
