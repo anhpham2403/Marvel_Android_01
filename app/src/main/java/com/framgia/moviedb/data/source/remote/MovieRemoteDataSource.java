@@ -1,5 +1,7 @@
 package com.framgia.moviedb.data.source.remote;
 
+import com.framgia.moviedb.data.model.Actor;
+import com.framgia.moviedb.data.model.ActorResponse;
 import com.framgia.moviedb.data.model.Genre;
 import com.framgia.moviedb.data.model.GenreResponse;
 import com.framgia.moviedb.data.model.Movie;
@@ -71,5 +73,49 @@ public class MovieRemoteDataSource extends BaseRemoteDataSource {
     @Override
     public Observable<Movie> getDetail(int id, String apiKey) {
         return mMovieApi.getDetail(id, apiKey);
+    }
+
+    @Override
+    public Observable<List<Actor>> getActorsByIdMovie(int id, String apiKey) {
+        return mMovieApi.getActorsByIdMovie(id, apiKey)
+                .map(new Function<ActorResponse, List<Actor>>() {
+                    @Override
+                    public List<Actor> apply(ActorResponse actorResponse) throws Exception {
+                        return actorResponse.getActors();
+                    }
+                });
+    }
+
+    @Override
+    public Observable<List<Movie>> getMoviesByIdGenre(int id, String apiKey) {
+        return mMovieApi.getMoviesByIdGenre(id, apiKey)
+                .map(new Function<MovieResponse, List<Movie>>() {
+                    @Override
+                    public List<Movie> apply(MovieResponse movieResponse) throws Exception {
+                        return movieResponse.getMovies();
+                    }
+                });
+    }
+
+    @Override
+    public Observable<List<Movie>> getMoviesByIdActor(int id, String apiKey) {
+        return mMovieApi.getMoviesByIdActor(id, apiKey)
+                .map(new Function<MovieResponse, List<Movie>>() {
+                    @Override
+                    public List<Movie> apply(MovieResponse movieResponse) throws Exception {
+                        return movieResponse.getMovies();
+                    }
+                });
+    }
+
+    @Override
+    public Observable<List<Movie>> getMoviesByIdProductor(int id, String apiKey) {
+        return mMovieApi.getMoviesByIdProductor(id, apiKey)
+                .map(new Function<MovieResponse, List<Movie>>() {
+                    @Override
+                    public List<Movie> apply(MovieResponse movieResponse) throws Exception {
+                        return movieResponse.getMovies();
+                    }
+                });
     }
 }

@@ -8,13 +8,25 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 /**
  * Created by anh on 19/09/2017.
  */
 
-public class Movie extends BaseModel implements Parcelable{
+public class Movie extends BaseModel implements Parcelable {
+    public static final Creator<Movie> CREATOR = new Creator<Movie>() {
+        @Override
+        public Movie createFromParcel(Parcel in) {
+            return new Movie(in);
+        }
+
+        @Override
+        public Movie[] newArray(int size) {
+            return new Movie[size];
+        }
+    };
     @SerializedName("original_title")
     @Expose
     private String mTitle;
@@ -31,29 +43,23 @@ public class Movie extends BaseModel implements Parcelable{
     @Expose
     private Date mReleaseDate;
     private String mTrailerUrl;
-    private ProductorResponse mProductors;
-    private ActorResponse mActors;
-    private GenreResponse mIdGenres;
+    @SerializedName("production_companies")
+    @Expose
+    private List<Productor> mProductors;
+    private List<Actor> mActors;
+    @SerializedName("genres")
+    @Expose
+    private List<Genre> mGenres;
 
     protected Movie(Parcel in) {
+        setId(in.readInt());
         mTitle = in.readString();
         mVoteAverage = in.readFloat();
         mPosterUrl = in.readString();
         mOverview = in.readString();
         mTrailerUrl = in.readString();
+        mReleaseDate = new Date(in.readLong());
     }
-
-    public static final Creator<Movie> CREATOR = new Creator<Movie>() {
-        @Override
-        public Movie createFromParcel(Parcel in) {
-            return new Movie(in);
-        }
-
-        @Override
-        public Movie[] newArray(int size) {
-            return new Movie[size];
-        }
-    };
 
     @Bindable
     public String getTitle() {
@@ -105,28 +111,28 @@ public class Movie extends BaseModel implements Parcelable{
         mPosterUrl = posterUrl;
     }
 
-    public ProductorResponse getProductors() {
+    public List<Productor> getProductors() {
         return mProductors;
     }
 
-    public void setProductors(ProductorResponse productors) {
+    public void setProductors(List<Productor> productors) {
         mProductors = productors;
     }
 
-    public ActorResponse getActors() {
+    public List<Actor> getActors() {
         return mActors;
     }
 
-    public void setActors(ActorResponse actors) {
+    public void setActors(List<Actor> actors) {
         mActors = actors;
     }
 
-    public GenreResponse getIdGenres() {
-        return mIdGenres;
+    public List<Genre> getGenres() {
+        return mGenres;
     }
 
-    public void setIdGenres(GenreResponse idGenres) {
-        mIdGenres = idGenres;
+    public void setGenres(List<Genre> genres) {
+        mGenres = genres;
     }
 
     @Bindable
@@ -142,10 +148,12 @@ public class Movie extends BaseModel implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(getId());
         parcel.writeString(mTitle);
         parcel.writeFloat(mVoteAverage);
         parcel.writeString(mPosterUrl);
         parcel.writeString(mOverview);
         parcel.writeString(mTrailerUrl);
+        parcel.writeLong(mReleaseDate.getTime());
     }
 }
