@@ -19,8 +19,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="@dimen/card_movie_margin"
-        app:cardCornerRadius="@dimen/card_movie_radius"
         android:onClick="@{()->listenner.onItemClick(viewModel)}"
+        app:cardCornerRadius="@dimen/card_movie_radius"
         >
         <RelativeLayout
             android:layout_width="match_parent"
@@ -31,7 +31,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/image_poster_height"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:clickable="true"
                 android:contentDescription="@string/description_image_poster"
                 android:scaleType="fitXY"
                 app:imageUrl="@{viewModel.posterUrl}"

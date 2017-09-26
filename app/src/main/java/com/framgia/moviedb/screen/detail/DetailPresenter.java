@@ -1,12 +1,14 @@
 package com.framgia.moviedb.screen.detail;
 
 import com.framgia.moviedb.BuildConfig;
+import com.framgia.moviedb.data.model.Actor;
 import com.framgia.moviedb.data.model.Movie;
 import com.framgia.moviedb.data.source.MovieReposity;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
+import java.util.List;
 
 /**
  * Listens to user actions from the UI ({@link DetailActivity}), retrieves the data and updates
@@ -34,8 +36,8 @@ public class DetailPresenter implements DetailContract.Presenter {
     @Override
     public void getDataMovie(int id) {
         mDisposable.add(mMovieReposity.getDetail(id, BuildConfig.API_KEY)
-                .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.newThread())
                 .subscribeWith(new DisposableObserver<Movie>() {
                     @Override
                     public void onNext(Movie value) {
@@ -51,5 +53,32 @@ public class DetailPresenter implements DetailContract.Presenter {
                     public void onComplete() {
                     }
                 }));
+    }
+
+    @Override
+    public void getDataActors(int id) {
+        mDisposable.add(mMovieReposity.getActorsByIdMovie(id, BuildConfig.API_KEY)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.newThread())
+                .subscribeWith(new DisposableObserver<List<Actor>>() {
+                    @Override
+                    public void onNext(List<Actor> value) {
+                        mViewModel.getDataActorsSuccess(value);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        mViewModel.getDataActorsFailure(e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                }));
+    }
+
+    public void onDestroy() {
+        mDisposable.dispose();
     }
 }

@@ -32,7 +32,7 @@ public interface MovieApi {
     @GET("movie/{id}")
     Observable<Movie> getDetail(@Path("id") int id, @Query("api_key") String apiKey);
 
-    @GET("/movie/{id}/credits")
+    @GET("/3/movie/{id}/credits")
     Observable<ActorResponse> getActorsByIdMovie(@Path("id") int id,
             @Query("api_key") String apiKey);
 
@@ -43,6 +43,7 @@ public interface MovieApi {
     @GET("/person/{id}/movie_credits")
     Observable<MovieResponse> getMoviesByIdActor(@Path("id") int id,
             @Query("api_key") String apiKey);
+
     @GET("/company/{id}/movies")
     Observable<MovieResponse> getMoviesByIdProductor(@Path("id") int id,
             @Query("api_key") String apiKey);
