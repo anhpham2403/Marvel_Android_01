@@ -1,6 +1,8 @@
 package com.framgia.moviedb.data.model;
 
 import android.databinding.Bindable;
+import android.os.Parcel;
+import android.os.Parcelable;
 import com.framgia.moviedb.utils.Constant;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -12,7 +14,7 @@ import java.util.Locale;
  * Created by anh on 19/09/2017.
  */
 
-public class Movie extends BaseModel {
+public class Movie extends BaseModel implements Parcelable{
     @SerializedName("original_title")
     @Expose
     private String mTitle;
@@ -32,6 +34,26 @@ public class Movie extends BaseModel {
     private ProductorResponse mProductors;
     private ActorResponse mActors;
     private GenreResponse mIdGenres;
+
+    protected Movie(Parcel in) {
+        mTitle = in.readString();
+        mVoteAverage = in.readFloat();
+        mPosterUrl = in.readString();
+        mOverview = in.readString();
+        mTrailerUrl = in.readString();
+    }
+
+    public static final Creator<Movie> CREATOR = new Creator<Movie>() {
+        @Override
+        public Movie createFromParcel(Parcel in) {
+            return new Movie(in);
+        }
+
+        @Override
+        public Movie[] newArray(int size) {
+            return new Movie[size];
+        }
+    };
 
     @Bindable
     public String getTitle() {
@@ -111,5 +133,19 @@ public class Movie extends BaseModel {
     public String getDate() {
         SimpleDateFormat dt = new SimpleDateFormat(Constant.DATE_FORMAT_DDMMYYYY, Locale.US);
         return dt.format(mReleaseDate);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(mTitle);
+        parcel.writeFloat(mVoteAverage);
+        parcel.writeString(mPosterUrl);
+        parcel.writeString(mOverview);
+        parcel.writeString(mTrailerUrl);
     }
 }

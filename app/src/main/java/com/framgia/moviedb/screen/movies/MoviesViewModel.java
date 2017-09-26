@@ -6,13 +6,15 @@ import android.databinding.Bindable;
 import android.widget.Toast;
 import com.framgia.moviedb.BR;
 import com.framgia.moviedb.data.model.Movie;
+import com.framgia.moviedb.screen.detail.DetailActivity;
 import java.util.List;
 
 /**
  * Exposes the data to be used in the Movies screen.
  */
 
-public class MoviesViewModel extends BaseObservable implements MoviesContract.ViewModel {
+public class MoviesViewModel extends BaseObservable
+        implements MoviesContract.ViewModel, MovieAdapter.OnItemClickListener {
     public static final int SPAN_COUNT = 2;
     private MoviesContract.Presenter mPresenter;
     private MovieAdapter mAdapter;
@@ -56,6 +58,7 @@ public class MoviesViewModel extends BaseObservable implements MoviesContract.Vi
     public int getSpanCount() {
         return SPAN_COUNT;
     }
+
     @Bindable
     public boolean isComplete() {
         return mIsComplete;
@@ -68,7 +71,7 @@ public class MoviesViewModel extends BaseObservable implements MoviesContract.Vi
 
     @Override
     public void onGetMoviesSuccess(List<Movie> movies) {
-        setAdapter(new MovieAdapter(movies));
+        setAdapter(new MovieAdapter(movies, this));
         setComplete(true);
     }
 
@@ -76,5 +79,10 @@ public class MoviesViewModel extends BaseObservable implements MoviesContract.Vi
     public void onGetMoviesFailure(String msg) {
         Toast.makeText(mContext, msg, Toast.LENGTH_LONG).show();
         setComplete(true);
+    }
+
+    @Override
+    public void onItemClick(Movie movie) {
+        mContext.startActivity(DetailActivity.getDetailIntent(mContext, movie));
     }
 }

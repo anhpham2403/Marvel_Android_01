@@ -7,4 +7,8 @@
     <dimen name="tab_indicator_height">5dp</dimen>
     <dimen name="image_poster_height">170dp</dimen>
     <dimen name="item_genre_padding">10dp</dimen>
+    <dimen name="text_18sp">18sp</dimen>
+    <dimen name="dp_10">10dp</dimen>
+    <dimen name="image_height">180dp</dimen>
+    <dimen name="image_width">120dp</dimen>
 </resources>
