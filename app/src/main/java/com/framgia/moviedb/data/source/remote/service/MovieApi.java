@@ -15,16 +15,17 @@ import retrofit2.http.Query;
 
 public interface MovieApi {
     @GET("movie/popular")
-    Observable<MovieResponse> getPopular(@Query("api_key") String apiKey);
+    Observable<MovieResponse> getPopular(@Query("api_key") String apiKey, @Query("page") int page);
 
     @GET("movie/now_playing")
-    Observable<MovieResponse> getNowPlaying(@Query("api_key") String apiKey);
+    Observable<MovieResponse> getNowPlaying(@Query("api_key") String apiKey,
+            @Query("page") int page);
 
     @GET("movie/upcoming")
-    Observable<MovieResponse> getUpcoming(@Query("api_key") String apiKey);
+    Observable<MovieResponse> getUpcoming(@Query("api_key") String apiKey, @Query("page") int page);
 
     @GET("movie/top_rated")
-    Observable<MovieResponse> getTopRate(@Query("api_key") String apiKey);
+    Observable<MovieResponse> getTopRate(@Query("api_key") String apiKey, @Query("page") int page);
 
     @GET("genre/movie/list")
     Observable<GenreResponse> getGenres(@Query("api_key") String apiKey);

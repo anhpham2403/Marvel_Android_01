@@ -22,14 +22,15 @@
             android:background="@color/materier_gray_300"
             app:layoutManager="@{LayoutManagers.grid(viewModel.spanCount)}"
             app:recyclerAdapter="@{viewModel.adapter}"
+            app:scrollListenner="@{viewModel.scrollListener}"
             />
         <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:visibility="@{viewModel.complete ? View.GONE : View.VISIBLE}"
+            android:visibility="@{viewModel.loadingMore ? View.VISIBLE : View.GONE}"
             style="?android:attr/progressBarStyle"
+            android:layout_centerInParent="true"
             />
     </RelativeLayout>
 </layout>

@@ -35,25 +35,25 @@ public class MoviesPresenter implements MoviesContract.Presenter {
     }
 
     @Override
-    public void getDataMovies(int category) {
+    public void getDataMovies(int category, int page) {
         Observable<List<Movie>> observable = null;
         switch (category) {
             case Constant.POPULAR_FRAGMENT:
-                observable = mMovieReposity.getPopular(BuildConfig.API_KEY);
+                observable = mMovieReposity.getPopular(BuildConfig.API_KEY, page);
                 break;
             case Constant.NOW_PLAYING_FRAGMENT:
-                observable = mMovieReposity.getNowPlaying(BuildConfig.API_KEY);
+                observable = mMovieReposity.getNowPlaying(BuildConfig.API_KEY, page);
                 break;
             case Constant.UP_COMING_FRAGMENT:
-                observable = mMovieReposity.getUpcoming(BuildConfig.API_KEY);
+                observable = mMovieReposity.getUpcoming(BuildConfig.API_KEY, page);
                 break;
             case Constant.TOP_RATE_FRAGMENT:
-                observable = mMovieReposity.getTopRate(BuildConfig.API_KEY);
+                observable = mMovieReposity.getTopRate(BuildConfig.API_KEY, page);
                 break;
             case Constant.FAVORITE_FRAGMENT:
                 break;
             default:
-                observable = mMovieReposity.getPopular(BuildConfig.API_KEY);
+                observable = mMovieReposity.getPopular(BuildConfig.API_KEY, page);
                 break;
         }
         if (observable == null) {

@@ -45,4 +45,9 @@ public final class BindingUtils {
             LayoutManagers.LayoutManagerFactory layoutManagerFactory) {
         recyclerView.setLayoutManager(layoutManagerFactory.create(recyclerView));
     }
+    @BindingAdapter({ "scrollListenner" })
+    public static void setScrollListenner(RecyclerView recyclerView,
+            RecyclerView.OnScrollListener listener) {
+        recyclerView.addOnScrollListener(listener);
+    }
 }

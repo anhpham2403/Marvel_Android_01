@@ -40,6 +40,14 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.BindingHolde
         return mMovies != null ? mMovies.size() : 0;
     }
 
+    public void updateAdapter(List<Movie> movies) {
+        if (movies == null) {
+            return;
+        }
+        mMovies.addAll(movies);
+        notifyDataSetChanged();
+    }
+
     /**
      * OnRecyclerViewItemClickListener
      */
