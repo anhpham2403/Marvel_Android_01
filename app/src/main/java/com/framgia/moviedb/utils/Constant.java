@@ -17,10 +17,12 @@ public final class Constant {
     public static final String TOP_RATE = "Top Rate";
     public static final String GENRES = "Genre";
     public static final String FAVORITE = "Favorite";
-    public static final String DATE_FORMAT_DDMMYYYY = "dd-mm-yyyy";
+    public static final String DATE_FORMAT_DDMMYYYY = "dd-MM-yyyy";
+    public static final String DATE_FORMAT_YYYYMMDD = "yyyy-MM-dd";
     public static final String BASE_URL = "https://api.themoviedb.org/3/";
     public static final String MOVIES_BUNDLE = "movie";
     public static final String BASE_URL_IMAGE = "https://image.tmdb.org/t/p/w300";
+
     private Constant() {
     }
 }

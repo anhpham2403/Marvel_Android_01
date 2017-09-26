@@ -9,7 +9,7 @@
             name="viewModel"
             type="com.framgia.moviedb.screen.detail.DetailViewModel"
             />
-
+        <import type="com.framgia.moviedb.utils.LayoutManagers"/>
     </data>
     <ScrollView
         android:layout_width="match_parent"
@@ -24,8 +24,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="@dimen/dp_10"
                 android:paddingEnd="@dimen/dp_10"
+                android:paddingStart="@dimen/dp_10"
                 android:paddingTop="@dimen/dp_10"
                 android:text="@{viewModel.movie.title}"
                 android:textColor="@color/color_black"
@@ -55,9 +55,10 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_margin="@dimen/dp_10"
                     android:layout_weight="1"
-                    android:padding="@dimen/dp_10"
                     android:text="@{viewModel.movie.overview}"
+                    android:textColor="@color/color_black"
                     />
             </LinearLayout>
             <LinearLayout
@@ -69,13 +70,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dp_10"
-                    android:src="@drawable/star"
+                    android:src="@drawable/ic_star"
+                    ignore="ContentDescription"
                     />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{Float.toString(viewModel.movie.voteAverage)}"
                     android:layout_margin="@dimen/dp_10"
+                    android:text="@{Float.toString(viewModel.movie.voteAverage)}"
                     android:textColor="@color/color_black"
                     android:textSize="@dimen/text_18sp"
                     android:textStyle="bold"
@@ -92,15 +94,15 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_margin="@dimen/dp_10"
+                android:orientation="vertical"
                 >
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/title_productor"
                     android:textColor="@color/color_black"
-                    android:textSize="@dimen/text_18sp"
+                    android:textSize="@dimen/text_title"
                     android:textStyle="bold"
                     />
                 <android.support.v7.widget.RecyclerView
@@ -111,15 +113,15 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_margin="@dimen/dp_10"
+                android:orientation="vertical"
                 >
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/title_actor"
                     android:textColor="@color/color_black"
-                    android:textSize="@dimen/text_18sp"
+                    android:textSize="@dimen/text_title"
                     android:textStyle="bold"
                     />
                 <android.support.v7.widget.RecyclerView
@@ -130,20 +132,22 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_margin="@dimen/dp_10"
+                android:orientation="vertical"
                 >
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/title_genres"
                     android:textColor="@color/color_black"
-                    android:textSize="@dimen/text_18sp"
+                    android:textSize="@dimen/text_title"
                     android:textStyle="bold"
                     />
                 <android.support.v7.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:layoutManager="@{LayoutManagers.linearHorizontal()}"
+                    app:recyclerAdapter="@{viewModel.genreAdapter}"
                     />
             </LinearLayout>
         </LinearLayout>

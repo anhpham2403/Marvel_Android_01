@@ -1,5 +1,6 @@
 package com.framgia.moviedb.data.source.remote.service;
 
+import com.framgia.moviedb.data.model.ActorResponse;
 import com.framgia.moviedb.data.model.GenreResponse;
 import com.framgia.moviedb.data.model.Movie;
 import com.framgia.moviedb.data.model.MovieResponse;
@@ -30,4 +31,19 @@ public interface MovieApi {
 
     @GET("movie/{id}")
     Observable<Movie> getDetail(@Path("id") int id, @Query("api_key") String apiKey);
+
+    @GET("/movie/{id}/credits")
+    Observable<ActorResponse> getActorsByIdMovie(@Path("id") int id,
+            @Query("api_key") String apiKey);
+
+    @GET("/genre/{id}/movies")
+    Observable<MovieResponse> getMoviesByIdGenre(@Path("id") int id,
+            @Query("api_key") String apiKey);
+
+    @GET("/person/{id}/movie_credits")
+    Observable<MovieResponse> getMoviesByIdActor(@Path("id") int id,
+            @Query("api_key") String apiKey);
+    @GET("/company/{id}/movies")
+    Observable<MovieResponse> getMoviesByIdProductor(@Path("id") int id,
+            @Query("api_key") String apiKey);
 }

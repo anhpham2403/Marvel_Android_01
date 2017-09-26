@@ -30,6 +30,16 @@ public final class LayoutManagers {
         };
     }
 
+    public static LayoutManagerFactory linearHorizontal() {
+        return new LayoutManagerFactory() {
+            @Override
+            public RecyclerView.LayoutManager create(RecyclerView recyclerView) {
+                return new LinearLayoutManager(recyclerView.getContext(),
+                        LinearLayoutManager.HORIZONTAL, false);
+            }
+        };
+    }
+
     /**
      * create layout manager
      */
