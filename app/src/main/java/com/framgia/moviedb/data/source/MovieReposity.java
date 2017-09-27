@@ -50,21 +50,21 @@ public class MovieReposity implements MovieDataSource {
 
     @Override
     public Observable<List<Actor>> getActorsByIdMovie(int id, String apiKey) {
-        return null;
+        return mRemoteDataSource.getActorsByIdMovie(id, apiKey);
     }
 
     @Override
     public Observable<List<Movie>> getMoviesByIdGenre(int id, String apiKey) {
-        return null;
+        return mRemoteDataSource.getMoviesByIdGenre(id, apiKey);
     }
 
     @Override
     public Observable<List<Movie>> getMoviesByIdActor(int id, String apiKey) {
-        return null;
+        return mRemoteDataSource.getMoviesByIdActor(id, apiKey);
     }
 
     @Override
     public Observable<List<Movie>> getMoviesByIdProductor(int id, String apiKey) {
-        return null;
+        return mRemoteDataSource.getMoviesByIdProductor(id, apiKey);
     }
 }

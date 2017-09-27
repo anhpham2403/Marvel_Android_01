@@ -50,4 +50,10 @@ public class DetailActivity extends BaseActivity {
         mViewModel.onStop();
         super.onStop();
     }
+
+    @Override
+    protected void onDestroy() {
+        mViewModel.onDestroy();
+        super.onDestroy();
+    }
 }
