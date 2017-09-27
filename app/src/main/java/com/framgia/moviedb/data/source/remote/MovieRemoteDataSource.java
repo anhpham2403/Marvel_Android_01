@@ -21,8 +21,8 @@ public class MovieRemoteDataSource extends BaseRemoteDataSource {
     }
 
     @Override
-    public Observable<List<Movie>> getPopular(String apiKey) {
-        return mMovieApi.getPopular(apiKey).map(new Function<MovieResponse, List<Movie>>() {
+    public Observable<List<Movie>> getPopular(String apiKey, int page) {
+        return mMovieApi.getPopular(apiKey, page).map(new Function<MovieResponse, List<Movie>>() {
             @Override
             public List<Movie> apply(MovieResponse movieResponse) throws Exception {
                 return movieResponse.getMovies();
@@ -31,8 +31,19 @@ public class MovieRemoteDataSource extends BaseRemoteDataSource {
     }
 
     @Override
-    public Observable<List<Movie>> getNowPlaying(String apiKey) {
-        return mMovieApi.getNowPlaying(apiKey).map(new Function<MovieResponse, List<Movie>>() {
+    public Observable<List<Movie>> getNowPlaying(String apiKey, int page) {
+        return mMovieApi.getNowPlaying(apiKey, page)
+                .map(new Function<MovieResponse, List<Movie>>() {
+                    @Override
+                    public List<Movie> apply(MovieResponse movieResponse) throws Exception {
+                        return movieResponse.getMovies();
+                    }
+                });
+    }
+
+    @Override
+    public Observable<List<Movie>> getUpcoming(String apiKey, int page) {
+        return mMovieApi.getUpcoming(apiKey, page).map(new Function<MovieResponse, List<Movie>>() {
             @Override
             public List<Movie> apply(MovieResponse movieResponse) throws Exception {
                 return movieResponse.getMovies();
@@ -41,18 +52,8 @@ public class MovieRemoteDataSource extends BaseRemoteDataSource {
     }
 
     @Override
-    public Observable<List<Movie>> getUpcoming(String apiKey) {
-        return mMovieApi.getUpcoming(apiKey).map(new Function<MovieResponse, List<Movie>>() {
-            @Override
-            public List<Movie> apply(MovieResponse movieResponse) throws Exception {
-                return movieResponse.getMovies();
-            }
-        });
-    }
-
-    @Override
-    public Observable<List<Movie>> getTopRate(String apiKey) {
-        return mMovieApi.getTopRate(apiKey).map(new Function<MovieResponse, List<Movie>>() {
+    public Observable<List<Movie>> getTopRate(String apiKey, int page) {
+        return mMovieApi.getTopRate(apiKey, page).map(new Function<MovieResponse, List<Movie>>() {
             @Override
             public List<Movie> apply(MovieResponse movieResponse) throws Exception {
                 return movieResponse.getMovies();

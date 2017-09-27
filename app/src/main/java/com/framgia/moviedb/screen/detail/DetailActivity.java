@@ -17,6 +17,7 @@ import com.framgia.moviedb.utils.Constant;
  * Detail Screen.
  */
 public class DetailActivity extends BaseActivity {
+
     private DetailContract.ViewModel mViewModel;
 
     public static Intent getDetailIntent(Context context, Movie movie) {

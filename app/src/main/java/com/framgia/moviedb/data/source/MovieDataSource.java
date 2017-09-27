@@ -11,13 +11,13 @@ import java.util.List;
  */
 
 public interface MovieDataSource {
-    Observable<List<Movie>> getPopular(String apiKey);
+    Observable<List<Movie>> getPopular(String apiKey, int page);
 
-    Observable<List<Movie>> getNowPlaying(String apiKey);
+    Observable<List<Movie>> getNowPlaying(String apiKey, int page);
 
-    Observable<List<Movie>> getUpcoming(String apiKey);
+    Observable<List<Movie>> getUpcoming(String apiKey, int page);
 
-    Observable<List<Movie>> getTopRate(String apiKey);
+    Observable<List<Movie>> getTopRate(String apiKey, int page);
 
     Observable<List<Genre>> getGenres(String apiKey);
 
