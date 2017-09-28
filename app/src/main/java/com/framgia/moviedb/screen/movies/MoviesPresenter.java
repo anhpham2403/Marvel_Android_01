@@ -35,7 +35,7 @@ public class MoviesPresenter implements MoviesContract.Presenter {
     }
 
     @Override
-    public void getDataMovies(int category, int page) {
+    public void getDataMovies(int category, int page, int mIdGenre) {
         Observable<List<Movie>> observable = null;
         switch (category) {
             case Constant.POPULAR_FRAGMENT:
@@ -51,6 +51,9 @@ public class MoviesPresenter implements MoviesContract.Presenter {
                 observable = mMovieReposity.getTopRate(BuildConfig.API_KEY, page);
                 break;
             case Constant.FAVORITE_FRAGMENT:
+                break;
+            case Constant.MOVIE_OF_GENRES_FRAGMENT:
+                observable = mMovieReposity.getMoviesByIdGenre(mIdGenre, BuildConfig.API_KEY, page);
                 break;
             default:
                 observable = mMovieReposity.getPopular(BuildConfig.API_KEY, page);

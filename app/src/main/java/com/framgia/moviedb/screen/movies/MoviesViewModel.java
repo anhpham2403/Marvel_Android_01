@@ -26,6 +26,7 @@ public class MoviesViewModel extends BaseObservable
     private boolean mIsLoadingMore;
     private int mPage;
     private List<Movie> mMovies;
+    private int mId;
     private RecyclerView.OnScrollListener mScrollListener = new RecyclerView.OnScrollListener() {
         @Override
         public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -45,11 +46,12 @@ public class MoviesViewModel extends BaseObservable
         }
     };
 
-    public MoviesViewModel(Context context, int category) {
+    public MoviesViewModel(Context context, int category, int id) {
         mContext = context;
         mCategory = category;
         mIsLoadingMore = true;
         mPage = 1;
+        mId = id;
         mMovies = new ArrayList<>();
         mAdapter = new MovieAdapter(mMovies, this);
     }
@@ -67,7 +69,7 @@ public class MoviesViewModel extends BaseObservable
     @Override
     public void setPresenter(MoviesContract.Presenter presenter) {
         mPresenter = presenter;
-        mPresenter.getDataMovies(mCategory, mPage);
+        mPresenter.getDataMovies(mCategory, mPage, mId);
     }
 
     @Bindable
@@ -101,6 +103,7 @@ public class MoviesViewModel extends BaseObservable
     public void onItemClick(Movie movie) {
         mContext.startActivity(DetailActivity.getDetailIntent(mContext, movie));
     }
+
     @Bindable
     public boolean isLoadingMore() {
         return mIsLoadingMore;
@@ -113,7 +116,7 @@ public class MoviesViewModel extends BaseObservable
 
     public void loadMore() {
         mPage++;
-        mPresenter.getDataMovies(mCategory, mPage);
+        mPresenter.getDataMovies(mCategory, mPage, mId);
     }
 
     @Bindable

@@ -11,6 +11,7 @@ public final class Constant {
     public static final int TOP_RATE_FRAGMENT = 3;
     public static final int GENRES_FRAGMENT = 4;
     public static final int FAVORITE_FRAGMENT = 5;
+    public static final int MOVIE_OF_GENRES_FRAGMENT = 6;
     public static final String NOW_PLAYING = "Now Playing";
     public static final String UP_COMING = "Up Coming";
     public static final String POPULAR = "Popular";
@@ -23,7 +24,8 @@ public final class Constant {
     public static final String MOVIES_BUNDLE = "movie";
     public static final String BASE_URL_IMAGE = "https://image.tmdb.org/t/p/w300";
     public static final int COLUMN_RECYCLER_VIEW = 2;
-
+    public static final String GENRES_BUNDLE = "genre";
+    public static final String ID_BUNDLE = "id";
     private Constant() {
     }
 }
