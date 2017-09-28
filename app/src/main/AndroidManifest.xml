@@ -3,6 +3,7 @@
     package="com.framgia.moviedb">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -22,6 +23,10 @@
             android:theme="@style/AppTheme"/>
         <activity
             android:name=".screen.listmovies.MoviesActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"/>
+        <activity
+            android:name=".screen.moviesofactor.MoviesofactorActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"/>
     </application>

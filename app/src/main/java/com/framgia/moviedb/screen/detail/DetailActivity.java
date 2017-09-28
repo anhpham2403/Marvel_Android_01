@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import com.framgia.moviedb.R;
+import com.framgia.moviedb.data.model.Actor;
 import com.framgia.moviedb.data.model.Movie;
 import com.framgia.moviedb.data.source.MovieReposity;
 import com.framgia.moviedb.data.source.remote.MovieRemoteDataSource;
@@ -19,12 +20,13 @@ import com.google.android.youtube.player.YouTubePlayer;
  * Detail Screen.
  */
 public class DetailActivity extends YouTubeBaseActivity
-        implements YouTubePlayer.OnInitializedListener {
+        implements YouTubePlayer.OnInitializedListener,ActorAdapter.OnItemClickListener {
     private DetailContract.ViewModel mViewModel;
 
     public static Intent getDetailIntent(Context context, Movie movie) {
         Intent intent = new Intent(context, DetailActivity.class);
         intent.putExtra(Constant.MOVIES_BUNDLE, movie);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         return intent;
     }
 
@@ -69,6 +71,11 @@ public class DetailActivity extends YouTubeBaseActivity
     @Override
     public void onInitializationFailure(YouTubePlayer.Provider provider,
             YouTubeInitializationResult youTubeInitializationResult) {
+
+    }
+
+    @Override
+    public void onItemClickListener(Actor actor) {
 
     }
 }

@@ -4,9 +4,12 @@ import android.databinding.Bindable;
 import android.os.Parcel;
 import android.os.Parcelable;
 import com.framgia.moviedb.BR;
+import com.framgia.moviedb.utils.Constant;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by anh on 16/09/2017.
@@ -40,13 +43,15 @@ public class Actor extends BaseModel implements Parcelable {
     @Expose
     private String mPlaceOfBirth;
 
+    public Actor() {
+    }
+
     protected Actor(Parcel in) {
         setId(in.readInt());
         mName = in.readString();
         mAvatarUrl = in.readString();
         mBiography = in.readString();
         mPlaceOfBirth = in.readString();
-        mBirthday = new Date(in.readLong());
     }
 
     @Bindable
@@ -69,6 +74,23 @@ public class Actor extends BaseModel implements Parcelable {
         notifyPropertyChanged(BR.avatarUrl);
     }
 
+    @Bindable
+    public String getDate() {
+        if(mBirthday==null){
+            return null;
+        }
+        SimpleDateFormat dt = new SimpleDateFormat(Constant.DATE_FORMAT_DDMMYYYY, Locale.US);
+        return dt.format(mBirthday);
+    }
+    @Bindable
+    public String getBiography() {
+        return mBiography;
+    }
+    @Bindable
+    public String getPlaceOfBirth() {
+        return mPlaceOfBirth;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -81,6 +103,5 @@ public class Actor extends BaseModel implements Parcelable {
         parcel.writeString(mAvatarUrl);
         parcel.writeString(mBiography);
         parcel.writeString(mPlaceOfBirth);
-        parcel.writeLong(mBirthday.getTime());
     }
 }

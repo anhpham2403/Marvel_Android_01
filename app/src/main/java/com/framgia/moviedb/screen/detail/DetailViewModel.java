@@ -10,6 +10,7 @@ import com.framgia.moviedb.data.model.Genre;
 import com.framgia.moviedb.data.model.Movie;
 import com.framgia.moviedb.screen.genres.GenreAdapter;
 import com.framgia.moviedb.screen.listmovies.MoviesActivity;
+import com.framgia.moviedb.screen.moviesofactor.MoviesofactorActivity;
 import java.util.List;
 
 /**
@@ -17,7 +18,7 @@ import java.util.List;
  */
 
 public class DetailViewModel extends BaseObservable
-        implements DetailContract.ViewModel, GenreAdapter.OnItemClickListener {
+        implements DetailContract.ViewModel, GenreAdapter.OnItemClickListener,ActorAdapter.OnItemClickListener {
     private Movie mMovie;
     private DetailContract.Presenter mPresenter;
     private Context mContext;
@@ -82,7 +83,7 @@ public class DetailViewModel extends BaseObservable
 
     @Override
     public void getDataActorsSuccess(List<Actor> actors) {
-        setActorAdapter(new ActorAdapter(actors));
+        setActorAdapter(new ActorAdapter(actors,this));
     }
 
     @Override
@@ -143,5 +144,10 @@ public class DetailViewModel extends BaseObservable
     public void setKeyVideo(String keyVideo) {
         mKeyVideo = keyVideo;
         notifyPropertyChanged(BR.keyVideo);
+    }
+
+    @Override
+    public void onItemClickListener(Actor actor) {
+        mContext.startActivity(MoviesofactorActivity.getIntentMoviesOfActor(mContext,actor));
     }
 }

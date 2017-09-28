@@ -5,4 +5,8 @@
     <string name="title_productor">Productor: </string>
     <string name="title_actor">Actor: </string>
     <string name="title_genres">Genres: </string>
+    <string name="title_name_actor">Name: %s</string>
+    <string name="title_birthday_actor">Birthday: %s</string>
+    <string name="title_placeofbirth_actor">Place of birth: %s</string>
+    <string name="title_biography_actor">Biography: %s</string>
 </resources>

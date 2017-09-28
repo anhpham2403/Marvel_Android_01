@@ -15,9 +15,10 @@ import java.util.List;
 
 public class ActorAdapter extends RecyclerView.Adapter<ActorAdapter.BindingHolder> {
     private List<Actor> mList;
-
-    public ActorAdapter(List<Actor> list) {
+    private OnItemClickListener mListener;
+    public ActorAdapter(List<Actor> list, OnItemClickListener listener) {
         mList = list;
+        mListener = listener;
     }
 
     @Override
@@ -25,7 +26,7 @@ public class ActorAdapter extends RecyclerView.Adapter<ActorAdapter.BindingHolde
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         ListItemActorBinding binding =
                 DataBindingUtil.inflate(inflater, R.layout.list_item_actor, parent, false);
-        return new BindingHolder(binding);
+        return new BindingHolder(binding,mListener);
     }
 
     @Override
@@ -37,21 +38,25 @@ public class ActorAdapter extends RecyclerView.Adapter<ActorAdapter.BindingHolde
     public int getItemCount() {
         return mList != null ? mList.size() : 0;
     }
-
+    public interface OnItemClickListener{
+        void onItemClickListener(Actor actor);
+    }
     /**
      * class holder
      */
     public static class BindingHolder extends RecyclerView.ViewHolder {
         private ListItemActorBinding mBinding;
-
-        public BindingHolder(ListItemActorBinding binding) {
+        private OnItemClickListener mListener;
+        public BindingHolder(ListItemActorBinding binding,OnItemClickListener listener) {
             super(binding.getRoot());
             mBinding = binding;
+            mListener = listener;
         }
 
         public void bind(Actor actor) {
             if (actor != null) {
                 mBinding.setViewModel(actor);
+                mBinding.setListener(mListener);
                 mBinding.executePendingBindings();
             }
         }

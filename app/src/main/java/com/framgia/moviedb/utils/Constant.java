@@ -26,6 +26,7 @@ public final class Constant {
     public static final int COLUMN_RECYCLER_VIEW = 2;
     public static final String GENRES_BUNDLE = "genre";
     public static final String ID_BUNDLE = "id";
+    public static final String ACTOR_BUNDLE = "actor";
     private Constant() {
     }
 }
