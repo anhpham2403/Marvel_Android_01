@@ -54,17 +54,17 @@ public class MovieReposity implements MovieDataSource {
     }
 
     @Override
-    public Observable<List<Movie>> getMoviesByIdGenre(int id, String apiKey) {
-        return mRemoteDataSource.getMoviesByIdGenre(id, apiKey);
+    public Observable<List<Movie>> getMoviesByIdGenre(int id, String apiKey, int page) {
+        return mRemoteDataSource.getMoviesByIdGenre(id, apiKey, page);
     }
 
     @Override
-    public Observable<List<Movie>> getMoviesByIdActor(int id, String apiKey) {
-        return mRemoteDataSource.getMoviesByIdActor(id, apiKey);
+    public Observable<List<Movie>> getMoviesByIdActor(int id, String apiKey, int page) {
+        return mRemoteDataSource.getMoviesByIdActor(id, apiKey, page);
     }
 
     @Override
-    public Observable<List<Movie>> getMoviesByIdProductor(int id, String apiKey) {
-        return mRemoteDataSource.getMoviesByIdProductor(id, apiKey);
+    public Observable<List<Movie>> getMoviesByIdProductor(int id, String apiKey, int page) {
+        return mRemoteDataSource.getMoviesByIdProductor(id, apiKey, page);
     }
 }
