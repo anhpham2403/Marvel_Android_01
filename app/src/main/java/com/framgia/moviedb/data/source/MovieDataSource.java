@@ -25,9 +25,9 @@ public interface MovieDataSource {
 
     Observable<List<Actor>> getActorsByIdMovie(int id, String apiKey);
 
-    Observable<List<Movie>> getMoviesByIdGenre(int id, String apiKey);
+    Observable<List<Movie>> getMoviesByIdGenre(int id, String apiKey, int page);
 
-    Observable<List<Movie>> getMoviesByIdActor(int id, String apiKey);
+    Observable<List<Movie>> getMoviesByIdActor(int id, String apiKey, int page);
 
-    Observable<List<Movie>> getMoviesByIdProductor(int id, String apiKey);
+    Observable<List<Movie>> getMoviesByIdProductor(int id, String apiKey, int page);
 }
