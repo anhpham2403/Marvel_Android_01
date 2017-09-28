@@ -23,6 +23,7 @@ public final class Constant {
     public static final String MOVIES_BUNDLE = "movie";
     public static final String BASE_URL_IMAGE = "https://image.tmdb.org/t/p/w300";
     public static final int COLUMN_RECYCLER_VIEW = 2;
+    public static final String GENRES_BUNDLE = "genre";
 
     private Constant() {
     }

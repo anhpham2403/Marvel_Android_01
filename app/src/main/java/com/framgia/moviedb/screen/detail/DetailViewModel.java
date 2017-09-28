@@ -1,6 +1,7 @@
 package com.framgia.moviedb.screen.detail;
 
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.widget.Toast;
@@ -9,6 +10,7 @@ import com.framgia.moviedb.data.model.Actor;
 import com.framgia.moviedb.data.model.Genre;
 import com.framgia.moviedb.data.model.Movie;
 import com.framgia.moviedb.screen.genres.GenreAdapter;
+import com.framgia.moviedb.screen.moviesofgenre.MoviesofgenreActivity;
 import java.util.List;
 
 /**

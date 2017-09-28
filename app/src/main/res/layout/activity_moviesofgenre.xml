@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.framgia.moviedb.screen.moviesofgenre.MoviesofgenreViewModel"
+            />
+        <import type="com.framgia.moviedb.utils.LayoutManagers"/>
+        <import type="android.view.View"/>
+        <import type="com.framgia.moviedb.utils.Constant"/>
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_10"
+            android:id="@+id/text_genre_name"
+            android:text="@{@string/title_name_genre(viewModel.genre.name)}"
+            android:textColor="@color/color_black"
+            android:textSize="@dimen/text_title"
+            android:textStyle="bold"
+            />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_movie_of_genre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="@{LayoutManagers.grid(Constant.COLUMN_RECYCLER_VIEW)}"
+            app:recyclerAdapter="@{viewModel.adapter}"
+            app:scrollListenner="@{viewModel.scrollListener}"
+            android:layout_below="@id/text_genre_name"
+            />
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.loadingMore ? View.VISIBLE : View.GONE}"
+            style="?android:attr/progressBarStyle"
+            android:layout_centerInParent="true"
+            />
+    </RelativeLayout>
+</layout>

@@ -37,15 +37,15 @@ public interface MovieApi {
     Observable<ActorResponse> getActorsByIdMovie(@Path("id") int id,
             @Query("api_key") String apiKey);
 
-    @GET("/genre/{id}/movies")
-    Observable<MovieResponse> getMoviesByIdGenre(@Path("id") int id,
-            @Query("api_key") String apiKey);
+    @GET("discover/movie")
+    Observable<MovieResponse> getMoviesByIdGenre(@Query("with_genres") int id,
+            @Query("api_key") String apiKey, @Query("page") int page);
 
-    @GET("/person/{id}/movie_credits")
-    Observable<MovieResponse> getMoviesByIdActor(@Path("id") int id,
-            @Query("api_key") String apiKey);
+    @GET("discover/movie")
+    Observable<MovieResponse> getMoviesByIdActor(@Path("with_people") int id,
+            @Query("api_key") String apiKey, @Query("page") int page);
 
-    @GET("/company/{id}/movies")
-    Observable<MovieResponse> getMoviesByIdProductor(@Path("id") int id,
-            @Query("api_key") String apiKey);
+    @GET("discover/movie")
+    Observable<MovieResponse> getMoviesByIdProductor(@Query("with_companies") int id,
+            @Query("api_key") String apiKey, @Query("page") int page);
 }

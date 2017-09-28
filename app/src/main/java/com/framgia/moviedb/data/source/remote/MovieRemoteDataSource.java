@@ -88,8 +88,8 @@ public class MovieRemoteDataSource extends BaseRemoteDataSource {
     }
 
     @Override
-    public Observable<List<Movie>> getMoviesByIdGenre(int id, String apiKey) {
-        return mMovieApi.getMoviesByIdGenre(id, apiKey)
+    public Observable<List<Movie>> getMoviesByIdGenre(int id, String apiKey, int page) {
+        return mMovieApi.getMoviesByIdGenre(id, apiKey, page)
                 .map(new Function<MovieResponse, List<Movie>>() {
                     @Override
                     public List<Movie> apply(MovieResponse movieResponse) throws Exception {
@@ -99,8 +99,8 @@ public class MovieRemoteDataSource extends BaseRemoteDataSource {
     }
 
     @Override
-    public Observable<List<Movie>> getMoviesByIdActor(int id, String apiKey) {
-        return mMovieApi.getMoviesByIdActor(id, apiKey)
+    public Observable<List<Movie>> getMoviesByIdActor(int id, String apiKey, int page) {
+        return mMovieApi.getMoviesByIdActor(id, apiKey, page)
                 .map(new Function<MovieResponse, List<Movie>>() {
                     @Override
                     public List<Movie> apply(MovieResponse movieResponse) throws Exception {
@@ -110,8 +110,8 @@ public class MovieRemoteDataSource extends BaseRemoteDataSource {
     }
 
     @Override
-    public Observable<List<Movie>> getMoviesByIdProductor(int id, String apiKey) {
-        return mMovieApi.getMoviesByIdProductor(id, apiKey)
+    public Observable<List<Movie>> getMoviesByIdProductor(int id, String apiKey, int page) {
+        return mMovieApi.getMoviesByIdProductor(id, apiKey, page)
                 .map(new Function<MovieResponse, List<Movie>>() {
                     @Override
                     public List<Movie> apply(MovieResponse movieResponse) throws Exception {

@@ -6,6 +6,7 @@ import android.databinding.Bindable;
 import android.widget.Toast;
 import com.framgia.moviedb.BR;
 import com.framgia.moviedb.data.model.Genre;
+import com.framgia.moviedb.screen.moviesofgenre.MoviesofgenreActivity;
 import java.util.List;
 
 /**
@@ -66,6 +67,6 @@ public class GenresViewModel extends BaseObservable
 
     @Override
     public void onItemClickListener(Genre genre) {
-        // TODO: 28/09/2017
+        mContext.startActivity(MoviesofgenreActivity.getIntentMoviesOfGenre(mContext,genre));
     }
 }
