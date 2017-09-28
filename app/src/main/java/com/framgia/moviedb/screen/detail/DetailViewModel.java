@@ -24,6 +24,7 @@ public class DetailViewModel extends BaseObservable
     private GenreAdapter mGenreAdapter;
     private ActorAdapter mActorAdapter;
     private ProductorAdapter mProductorAdapter;
+    private String mKeyVideo;
 
     public DetailViewModel(Context context, Movie movie) {
         mContext = context;
@@ -59,6 +60,7 @@ public class DetailViewModel extends BaseObservable
         mPresenter = presenter;
         mPresenter.getDataMovie(mMovie.getId());
         mPresenter.getDataActors(mMovie.getId());
+        mPresenter.getTrailer(mMovie.getId());
     }
 
     @Override
@@ -85,6 +87,16 @@ public class DetailViewModel extends BaseObservable
 
     @Override
     public void getDataActorsFailure(String msg) {
+        Toast.makeText(mContext, msg, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void getTrailerSuccess(String keyVideo) {
+        setKeyVideo(keyVideo);
+    }
+
+    @Override
+    public void getTrailerFailure(String msg) {
         Toast.makeText(mContext, msg, Toast.LENGTH_LONG).show();
     }
 
@@ -121,5 +133,15 @@ public class DetailViewModel extends BaseObservable
     @Override
     public void onItemClickListener(Genre genre) {
         mContext.startActivity(MoviesActivity.getIntentMoviesOfGenre(mContext, genre));
+    }
+
+    @Bindable
+    public String getKeyVideo() {
+        return mKeyVideo;
+    }
+
+    public void setKeyVideo(String keyVideo) {
+        mKeyVideo = keyVideo;
+        notifyPropertyChanged(BR.keyVideo);
     }
 }

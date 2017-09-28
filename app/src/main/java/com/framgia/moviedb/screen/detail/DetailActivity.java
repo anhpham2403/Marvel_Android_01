@@ -10,13 +10,16 @@ import com.framgia.moviedb.data.source.MovieReposity;
 import com.framgia.moviedb.data.source.remote.MovieRemoteDataSource;
 import com.framgia.moviedb.data.source.remote.service.MovieServiceClient;
 import com.framgia.moviedb.databinding.ActivityDetailBinding;
-import com.framgia.moviedb.screen.BaseActivity;
 import com.framgia.moviedb.utils.Constant;
+import com.google.android.youtube.player.YouTubeBaseActivity;
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
 
 /**
  * Detail Screen.
  */
-public class DetailActivity extends BaseActivity {
+public class DetailActivity extends YouTubeBaseActivity
+        implements YouTubePlayer.OnInitializedListener {
     private DetailContract.ViewModel mViewModel;
 
     public static Intent getDetailIntent(Context context, Movie movie) {
@@ -55,5 +58,17 @@ public class DetailActivity extends BaseActivity {
     protected void onDestroy() {
         mViewModel.onDestroy();
         super.onDestroy();
+    }
+
+    @Override
+    public void onInitializationSuccess(YouTubePlayer.Provider provider,
+            YouTubePlayer youTubePlayer, boolean b) {
+
+    }
+
+    @Override
+    public void onInitializationFailure(YouTubePlayer.Provider provider,
+            YouTubeInitializationResult youTubeInitializationResult) {
+
     }
 }
