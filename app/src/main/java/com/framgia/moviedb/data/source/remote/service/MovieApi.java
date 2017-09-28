@@ -53,11 +53,11 @@ public interface MovieApi {
             @Query("api_key") String apiKey, @Query("page") int page);
 
     @GET("person/{id}")
-    Observable<Actor> getActor( @Path("id") int id,@Query("api_key") String apiKey);
+    Observable<Actor> getActor(@Path("id") int id, @Query("api_key") String apiKey);
 
     @GET("company/{id}")
-    Observable<Productor> getProDuctor(@Path("id") int id,@Query("api_key") String apiKey);
+    Observable<Productor> getProDuctor(@Path("id") int id, @Query("api_key") String apiKey);
 
     @GET("movie/{id}/videos")
-    Observable<JsonObject> getVideo(@Path("id") int id,@Query("api_key") String apiKey);
+    Observable<JsonObject> getVideo(@Path("id") int id, @Query("api_key") String apiKey);
 }
