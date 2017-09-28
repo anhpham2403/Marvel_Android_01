@@ -2,8 +2,12 @@ package com.framgia.moviedb.utils.binding;
 
 import android.databinding.BindingAdapter;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import com.framgia.moviedb.screen.main.ViewPagerAdapter;
 import com.framgia.moviedb.utils.Constant;
@@ -46,9 +50,17 @@ public final class BindingUtils {
             LayoutManagers.LayoutManagerFactory layoutManagerFactory) {
         recyclerView.setLayoutManager(layoutManagerFactory.create(recyclerView));
     }
+
     @BindingAdapter({ "scrollListenner" })
     public static void setScrollListenner(RecyclerView recyclerView,
             RecyclerView.OnScrollListener listener) {
         recyclerView.addOnScrollListener(listener);
+    }
+
+    @BindingAdapter({ "bind:manager", "bind:fragment" })
+    public static void setFragmentManager(FrameLayout layout, FragmentManager manager,
+            Fragment fragment) {
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(layout.getId(), fragment).commit();
     }
 }

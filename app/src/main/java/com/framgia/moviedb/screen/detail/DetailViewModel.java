@@ -9,6 +9,7 @@ import com.framgia.moviedb.data.model.Actor;
 import com.framgia.moviedb.data.model.Genre;
 import com.framgia.moviedb.data.model.Movie;
 import com.framgia.moviedb.screen.genres.GenreAdapter;
+import com.framgia.moviedb.screen.listmovies.MoviesActivity;
 import java.util.List;
 
 /**
@@ -119,6 +120,6 @@ public class DetailViewModel extends BaseObservable
 
     @Override
     public void onItemClickListener(Genre genre) {
-        // TODO: 28/09/2017
+        mContext.startActivity(MoviesActivity.getIntentMoviesOfGenre(mContext, genre));
     }
 }

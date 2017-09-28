@@ -18,8 +18,9 @@ import com.framgia.moviedb.utils.Constant;
  * Movies Screen.
  */
 public class MoviesFragment extends BaseFragment {
-    int category;
     MoviesContract.Presenter presenter;
+    private int mCategory;
+    private int mId;
     private MoviesContract.ViewModel mViewModel;
     private MovieReposity mMovieReposity;
 
@@ -31,13 +32,23 @@ public class MoviesFragment extends BaseFragment {
         return fragment;
     }
 
+    public static MoviesFragment newInstance(int category, int id) {
+        MoviesFragment fragment = new MoviesFragment();
+        Bundle args = new Bundle();
+        args.putInt(Constant.MOVIES_BUNDLE, category);
+        args.putInt(Constant.ID_BUNDLE, id);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mMovieReposity =
                 new MovieReposity(new MovieRemoteDataSource(MovieServiceClient.getInstance()));
-        category = getArguments().getInt(Constant.MOVIES_BUNDLE);
-        mViewModel = new MoviesViewModel(getContext(), category);
+        mCategory = getArguments().getInt(Constant.MOVIES_BUNDLE);
+        mId = getArguments().getInt(Constant.ID_BUNDLE, -1);
+        mViewModel = new MoviesViewModel(getContext(), mCategory, mId);
         presenter = new MoviesPresenter(mViewModel, mMovieReposity);
         mViewModel.setPresenter(presenter);
     }
