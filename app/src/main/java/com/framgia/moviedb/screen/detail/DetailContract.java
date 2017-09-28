@@ -23,6 +23,10 @@ interface DetailContract {
         void getDataActorsSuccess(List<Actor> actors);
 
         void getDataActorsFailure(String msg);
+
+        void getTrailerSuccess(String keyVideo);
+
+        void getTrailerFailure(String msg);
     }
 
     /**
@@ -34,5 +38,7 @@ interface DetailContract {
         void getDataMovie(int id);
 
         void getDataActors(int id);
+
+        void getTrailer(int id);
     }
 }

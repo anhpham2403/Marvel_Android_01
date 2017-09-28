@@ -15,6 +15,7 @@ android {
     versionName "1.0"
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     buildConfigField "String", "API_KEY", "\"${API_KEY}\""
+    buildConfigField "String", "API_KEY_YOUTUBE", "\"${API_KEY_YOUTUBE}\""
   }
   buildTypes {
     release {
@@ -45,4 +46,5 @@ dependencies {
   compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
   compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
   compile 'com.android.support:cardview-v7:26.0.0-alpha1'
+  compile files('libs/YouTubeAndroidPlayerApi.jar')
 }

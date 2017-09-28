@@ -1,6 +1,7 @@
 package com.framgia.moviedb.screen.genres;
 
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.widget.Toast;

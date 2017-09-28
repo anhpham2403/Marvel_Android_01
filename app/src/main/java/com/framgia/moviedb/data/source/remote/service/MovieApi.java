@@ -1,9 +1,12 @@
 package com.framgia.moviedb.data.source.remote.service;
 
+import com.framgia.moviedb.data.model.Actor;
 import com.framgia.moviedb.data.model.ActorResponse;
 import com.framgia.moviedb.data.model.GenreResponse;
 import com.framgia.moviedb.data.model.Movie;
 import com.framgia.moviedb.data.model.MovieResponse;
+import com.framgia.moviedb.data.model.Productor;
+import com.google.gson.JsonObject;
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -48,4 +51,13 @@ public interface MovieApi {
     @GET("discover/movie")
     Observable<MovieResponse> getMoviesByIdProductor(@Query("with_companies") int id,
             @Query("api_key") String apiKey, @Query("page") int page);
+
+    @GET("person/{id}")
+    Observable<Actor> getActor( @Path("id") int id,@Query("api_key") String apiKey);
+
+    @GET("company/{id}")
+    Observable<Productor> getProDuctor(@Path("id") int id,@Query("api_key") String apiKey);
+
+    @GET("movie/{id}/videos")
+    Observable<JsonObject> getVideo(@Path("id") int id,@Query("api_key") String apiKey);
 }

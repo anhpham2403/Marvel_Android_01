@@ -6,7 +6,10 @@ import com.framgia.moviedb.data.model.Genre;
 import com.framgia.moviedb.data.model.GenreResponse;
 import com.framgia.moviedb.data.model.Movie;
 import com.framgia.moviedb.data.model.MovieResponse;
+import com.framgia.moviedb.data.model.Productor;
 import com.framgia.moviedb.data.source.remote.service.MovieApi;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import io.reactivex.Observable;
 import io.reactivex.functions.Function;
 import java.util.List;
@@ -118,5 +121,28 @@ public class MovieRemoteDataSource extends BaseRemoteDataSource {
                         return movieResponse.getMovies();
                     }
                 });
+    }
+
+    @Override
+    public Observable<Actor> getActor(String apiKey, int id) {
+        return mMovieApi.getActor(id, apiKey);
+    }
+
+    @Override
+    public Observable<Productor> getProductor(String apiKey, int id) {
+        return mMovieApi.getProDuctor(id, apiKey);
+    }
+
+    @Override
+    public Observable<String> getTrailer(String apiKey, int id) {
+        return mMovieApi.getVideo(id, apiKey).map(new Function<JsonObject, String>() {
+
+            @Override
+            public String apply(JsonObject jsonObject) throws Exception {
+                JsonArray listVideos = jsonObject.getAsJsonArray("results");
+                JsonObject video = listVideos.get(0).getAsJsonObject();
+                return video.get("key").getAsString();
+            }
+        });
     }
 }
