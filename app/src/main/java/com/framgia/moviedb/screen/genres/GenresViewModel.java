@@ -12,7 +12,8 @@ import java.util.List;
  * Exposes the data to be used in the Genres screen.
  */
 
-public class GenresViewModel extends BaseObservable implements GenresContract.ViewModel {
+public class GenresViewModel extends BaseObservable
+        implements GenresContract.ViewModel, GenreAdapter.OnItemClickListener {
 
     private GenresContract.Presenter mPresenter;
     private GenreAdapter mAdapter;
@@ -35,15 +36,16 @@ public class GenresViewModel extends BaseObservable implements GenresContract.Vi
     @Override
     public void setPresenter(GenresContract.Presenter presenter) {
         mPresenter = presenter;
+        mPresenter.getDataGenres();
     }
 
     @Override
-    public void onGetGenreSuccess(List<Genre> response) {
-        setAdapter(new GenreAdapter(response));
+    public void onGetGenresSuccess(List<Genre> response) {
+        setAdapter(new GenreAdapter(response, this));
     }
 
     @Override
-    public void onGetGenreFailure(String msg) {
+    public void onGetGenresFailure(String msg) {
         Toast.makeText(mContext, msg, Toast.LENGTH_LONG).show();
     }
 
@@ -55,5 +57,15 @@ public class GenresViewModel extends BaseObservable implements GenresContract.Vi
     public void setAdapter(GenreAdapter adapter) {
         mAdapter = adapter;
         notifyPropertyChanged(BR.adapter);
+    }
+
+    @Override
+    public void onDestroy() {
+        mPresenter.onDestroy();
+    }
+
+    @Override
+    public void onItemClickListener(Genre genre) {
+        // TODO: 28/09/2017
     }
 }

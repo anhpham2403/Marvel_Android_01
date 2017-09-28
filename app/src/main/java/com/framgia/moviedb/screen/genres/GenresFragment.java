@@ -7,6 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.framgia.moviedb.R;
+import com.framgia.moviedb.data.source.MovieReposity;
+import com.framgia.moviedb.data.source.remote.MovieRemoteDataSource;
+import com.framgia.moviedb.data.source.remote.service.MovieServiceClient;
 import com.framgia.moviedb.databinding.FragmentGenresBinding;
 import com.framgia.moviedb.screen.BaseFragment;
 
@@ -14,7 +17,6 @@ import com.framgia.moviedb.screen.BaseFragment;
  * Genres Screen.
  */
 public class GenresFragment extends BaseFragment {
-
     private GenresContract.ViewModel mViewModel;
 
     public static GenresFragment newInstance() {
@@ -25,8 +27,9 @@ public class GenresFragment extends BaseFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mViewModel = new GenresViewModel(getContext());
-
-        GenresContract.Presenter presenter = new GenresPresenter(mViewModel);
+        MovieReposity movieReposity =
+                new MovieReposity(new MovieRemoteDataSource(MovieServiceClient.getInstance()));
+        GenresContract.Presenter presenter = new GenresPresenter(mViewModel, movieReposity);
         mViewModel.setPresenter(presenter);
     }
 
@@ -51,5 +54,11 @@ public class GenresFragment extends BaseFragment {
     public void onStop() {
         mViewModel.onStop();
         super.onStop();
+    }
+
+    @Override
+    public void onDestroy() {
+        mViewModel.onDestroy();
+        super.onDestroy();
     }
 }

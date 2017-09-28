@@ -13,14 +13,19 @@ interface GenresContract {
      * View.
      */
     interface ViewModel extends BaseViewModel<Presenter> {
-        void onGetGenreSuccess(List<Genre> genres);
+        void onGetGenresSuccess(List<Genre> genres);
 
-        void onGetGenreFailure(String msg);
+        void onGetGenresFailure(String msg);
+
+        void onDestroy();
     }
 
     /**
      * Presenter.
      */
     interface Presenter extends BasePresenter {
+        void getDataGenres();
+
+        void onDestroy();
     }
 }
