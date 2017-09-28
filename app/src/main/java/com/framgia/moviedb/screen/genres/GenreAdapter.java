@@ -15,9 +15,11 @@ import java.util.List;
 
 public class GenreAdapter extends RecyclerView.Adapter<GenreAdapter.BindingHolder> {
     private List<Genre> mGenres;
+    private OnItemClickListener mListener;
 
-    public GenreAdapter(List<Genre> genres) {
+    public GenreAdapter(List<Genre> genres, OnItemClickListener listener) {
         mGenres = genres;
+        mListener = listener;
     }
 
     @Override
@@ -25,7 +27,7 @@ public class GenreAdapter extends RecyclerView.Adapter<GenreAdapter.BindingHolde
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         ListItemGenreBinding binding =
                 DataBindingUtil.inflate(inflater, R.layout.list_item_genre, parent, false);
-        return new BindingHolder(binding);
+        return new BindingHolder(binding, mListener);
     }
 
     @Override
@@ -39,19 +41,29 @@ public class GenreAdapter extends RecyclerView.Adapter<GenreAdapter.BindingHolde
     }
 
     /**
+     * listener on item click
+     */
+    public interface OnItemClickListener {
+        void onItemClickListener(Genre genre);
+    }
+
+    /**
      * hold item
      */
     public static class BindingHolder extends RecyclerView.ViewHolder {
         private ListItemGenreBinding mBinding;
+        private OnItemClickListener mListener;
 
-        public BindingHolder(ListItemGenreBinding binding) {
+        public BindingHolder(ListItemGenreBinding binding, OnItemClickListener listener) {
             super(binding.getRoot());
             mBinding = binding;
+            mListener = listener;
         }
 
         public void bind(Genre genre) {
             if (genre != null) {
                 mBinding.setViewModel(genre);
+                mBinding.setListener(mListener);
                 mBinding.executePendingBindings();
             }
         }

@@ -2,7 +2,6 @@
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     >
     <data>
 
@@ -10,6 +9,8 @@
             name="viewModel"
             type="com.framgia.moviedb.screen.genres.GenresViewModel"
             />
+        <import type="com.framgia.moviedb.utils.LayoutManagers"/>
+        <import type="com.framgia.moviedb.utils.Constant"/>
     </data>
 
     <android.support.v7.widget.RecyclerView
@@ -17,6 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/materier_gray_300"
+        app:layoutManager="@{LayoutManagers.grid(Constant.COLUMN_RECYCLER_VIEW)}"
         app:recyclerAdapter="@{viewModel.adapter}"
         />
 </layout>

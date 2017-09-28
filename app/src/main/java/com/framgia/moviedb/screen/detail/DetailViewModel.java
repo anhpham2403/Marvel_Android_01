@@ -6,6 +6,7 @@ import android.databinding.Bindable;
 import android.widget.Toast;
 import com.framgia.moviedb.BR;
 import com.framgia.moviedb.data.model.Actor;
+import com.framgia.moviedb.data.model.Genre;
 import com.framgia.moviedb.data.model.Movie;
 import com.framgia.moviedb.screen.genres.GenreAdapter;
 import java.util.List;
@@ -14,13 +15,15 @@ import java.util.List;
  * Exposes the data to be used in the Detail screen.
  */
 
-public class DetailViewModel extends BaseObservable implements DetailContract.ViewModel {
+public class DetailViewModel extends BaseObservable
+        implements DetailContract.ViewModel, GenreAdapter.OnItemClickListener {
     private Movie mMovie;
     private DetailContract.Presenter mPresenter;
     private Context mContext;
     private GenreAdapter mGenreAdapter;
     private ActorAdapter mActorAdapter;
     private ProductorAdapter mProductorAdapter;
+
     public DetailViewModel(Context context, Movie movie) {
         mContext = context;
         mMovie = movie;
@@ -59,13 +62,13 @@ public class DetailViewModel extends BaseObservable implements DetailContract.Vi
 
     @Override
     public void onDestroy() {
-       mPresenter.onDestroy();
+        mPresenter.onDestroy();
     }
 
     @Override
     public void getDataMovieSuccess(Movie movie) {
         setMovie(movie);
-        setGenreAdapter(new GenreAdapter(movie.getGenres()));
+        setGenreAdapter(new GenreAdapter(movie.getGenres(), this));
         setProductorAdapter(new ProductorAdapter(movie.getProductors()));
     }
 
@@ -112,5 +115,10 @@ public class DetailViewModel extends BaseObservable implements DetailContract.Vi
     public void setProductorAdapter(ProductorAdapter productorAdapter) {
         mProductorAdapter = productorAdapter;
         notifyPropertyChanged(BR.productorAdapter);
+    }
+
+    @Override
+    public void onItemClickListener(Genre genre) {
+        // TODO: 28/09/2017
     }
 }

@@ -21,6 +21,7 @@ public final class BindingUtils {
     @BindingAdapter({ "bind:viewPagerAdapter" })
     public static void setAdapterForViewPager(ViewPager viewPager, ViewPagerAdapter adapter) {
         viewPager.setAdapter(adapter);
+        viewPager.setOffscreenPageLimit(6);
     }
 
     @BindingAdapter({ "bind:viewPager" })

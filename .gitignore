@@ -49,3 +49,7 @@ google-services.json
 freeline.py
 freeline/
 freeline_project_description.json
+
+#apikey
+gradle.properties
+.gradle.properties
