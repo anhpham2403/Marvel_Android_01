@@ -6,12 +6,38 @@ import android.os.Parcelable;
 import com.framgia.moviedb.BR;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import java.util.Date;
 
 /**
  * Created by anh on 16/09/2017.
  */
 
 public class Actor extends BaseModel implements Parcelable {
+    @SerializedName("name")
+    @Expose
+    private String mName;
+    @SerializedName("profile_path")
+    @Expose
+    private String mAvatarUrl;
+    @SerializedName("birthday")
+    @Expose
+    private Date mBirthday;
+    @SerializedName("biography")
+    @Expose
+    private String mBiography;
+    @SerializedName("place_of_birth")
+    @Expose
+    private String PlaveOfBirth;
+
+    protected Actor(Parcel in) {
+        setId(in.readInt());
+        mName = in.readString();
+        mAvatarUrl = in.readString();
+        mBiography = in.readString();
+        PlaveOfBirth = in.readString();
+        mBirthday = new Date(in.readLong());
+    }
+
     public static final Creator<Actor> CREATOR = new Creator<Actor>() {
         @Override
         public Actor createFromParcel(Parcel in) {
@@ -23,18 +49,6 @@ public class Actor extends BaseModel implements Parcelable {
             return new Actor[size];
         }
     };
-    @SerializedName("name")
-    @Expose
-    private String mName;
-    @SerializedName("profile_path")
-    @Expose
-    private String mAvatarUrl;
-
-    protected Actor(Parcel in) {
-        setId(in.readInt());
-        mName = in.readString();
-        mAvatarUrl = in.readString();
-    }
 
     @Bindable
     public String getName() {
@@ -55,6 +69,33 @@ public class Actor extends BaseModel implements Parcelable {
         mAvatarUrl = avatarUrl;
         notifyPropertyChanged(BR.avatarUrl);
     }
+@Bindable
+    public Date getBirthday() {
+        return mBirthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        mBirthday = birthday;
+        notifyPropertyChanged(BR.birthday);
+    }
+    @Bindable
+    public String getBiography() {
+        return mBiography;
+    }
+
+    public void setBiography(String biography) {
+        mBiography = biography;
+        notifyPropertyChanged(BR.biography);
+    }
+    @Bindable
+    public String getPlaveOfBirth() {
+        return PlaveOfBirth;
+    }
+
+    public void setPlaveOfBirth(String plaveOfBirth) {
+        PlaveOfBirth = plaveOfBirth;
+        notifyPropertyChanged(BR.plaveOfBirth);
+    }
 
     @Override
     public int describeContents() {
@@ -66,5 +107,8 @@ public class Actor extends BaseModel implements Parcelable {
         parcel.writeInt(getId());
         parcel.writeString(mName);
         parcel.writeString(mAvatarUrl);
+        parcel.writeString(mBiography);
+        parcel.writeString(PlaveOfBirth);
+        parcel.writeLong(mBirthday.getTime());
     }
 }
