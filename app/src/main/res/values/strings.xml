@@ -1,7 +1,11 @@
 <resources>
     <string name="app_name">Marvel</string>
     <string name="description_image_poster">poster</string>
+<<<<<<< 0d84451198a0427276034dd3f1dae4e3c2710bbb
     <string name="button_add">add to favorites</string>
+=======
+    <string name="button_add">favorite</string>
+>>>>>>> fix ui
     <string name="title_productor">Productor: </string>
     <string name="title_actor">Actor: </string>
     <string name="title_genres">Genres: </string>

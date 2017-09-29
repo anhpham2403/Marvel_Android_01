@@ -26,7 +26,10 @@ public final class Constant {
     public static final int COLUMN_RECYCLER_VIEW = 2;
     public static final String GENRES_BUNDLE = "genre";
     public static final String ID_BUNDLE = "id";
+<<<<<<< 0d84451198a0427276034dd3f1dae4e3c2710bbb
     public static final String KEY_VIDEO = "video";
+=======
+>>>>>>> fix ui
 
     private Constant() {
     }
