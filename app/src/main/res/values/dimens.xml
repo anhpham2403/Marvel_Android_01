@@ -13,4 +13,5 @@
     <dimen name="image_width">120dp</dimen>
     <dimen name="image_height_150">150dp</dimen>
     <dimen name="image_width_100">100dp</dimen>
+    <dimen name="dp_20">20dp</dimen>
 </resources>

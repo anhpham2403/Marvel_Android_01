@@ -3,6 +3,8 @@ package com.framgia.moviedb.screen.detail;
 import android.content.Context;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.widget.Toast;
 import com.framgia.moviedb.BR;
 import com.framgia.moviedb.data.model.Actor;
@@ -10,6 +12,7 @@ import com.framgia.moviedb.data.model.Genre;
 import com.framgia.moviedb.data.model.Movie;
 import com.framgia.moviedb.screen.genres.GenreAdapter;
 import com.framgia.moviedb.screen.listmovies.MoviesActivity;
+import com.framgia.moviedb.screen.youtube.YoutubeFragment;
 import java.util.List;
 
 /**
@@ -24,11 +27,13 @@ public class DetailViewModel extends BaseObservable
     private GenreAdapter mGenreAdapter;
     private ActorAdapter mActorAdapter;
     private ProductorAdapter mProductorAdapter;
-    private String mKeyVideo;
+    private Fragment mFragment;
+    private FragmentManager mManager;
 
-    public DetailViewModel(Context context, Movie movie) {
+    public DetailViewModel(Context context, Movie movie, FragmentManager manager) {
         mContext = context;
         mMovie = movie;
+        mManager = manager;
     }
 
     @Override
@@ -92,7 +97,7 @@ public class DetailViewModel extends BaseObservable
 
     @Override
     public void getTrailerSuccess(String keyVideo) {
-        setKeyVideo(keyVideo);
+        setFragment(YoutubeFragment.newInstance(keyVideo));
     }
 
     @Override
@@ -136,12 +141,17 @@ public class DetailViewModel extends BaseObservable
     }
 
     @Bindable
-    public String getKeyVideo() {
-        return mKeyVideo;
+    public FragmentManager getManager() {
+        return mManager;
     }
 
-    public void setKeyVideo(String keyVideo) {
-        mKeyVideo = keyVideo;
-        notifyPropertyChanged(BR.keyVideo);
+    @Bindable
+    public Fragment getFragment() {
+        return mFragment;
+    }
+
+    public void setFragment(Fragment fragment) {
+        mFragment = fragment;
+        notifyPropertyChanged(BR.fragment);
     }
 }
