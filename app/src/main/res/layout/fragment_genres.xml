@@ -17,7 +17,6 @@
         android:id="@+id/recycler_genre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/materier_gray_300"
         app:layoutManager="@{LayoutManagers.grid(Constant.COLUMN_RECYCLER_VIEW)}"
         app:recyclerAdapter="@{viewModel.adapter}"
         />

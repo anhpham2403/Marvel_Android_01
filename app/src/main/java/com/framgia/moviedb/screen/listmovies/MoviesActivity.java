@@ -30,6 +30,7 @@ public class MoviesActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         Genre genre = getIntent().getExtras().getParcelable(Constant.GENRES_BUNDLE);
         setTitle(genre.getName());
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         FragmentManager fragmentManager = getSupportFragmentManager();
         mViewModel = new MoviesActivityViewModel(getApplicationContext(), fragmentManager, genre);
         MoviesActivityContract.Presenter presenter = new MoviesActivityPresenter(mViewModel);
@@ -49,5 +50,11 @@ public class MoviesActivity extends BaseActivity {
     protected void onStop() {
         mViewModel.onStop();
         super.onStop();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
     }
 }
