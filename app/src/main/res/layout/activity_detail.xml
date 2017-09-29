@@ -21,11 +21,12 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             >
-            <com.google.android.youtube.player.YouTubePlayerView
-                android:id="@+id/player"
+            <FrameLayout
+                android:id="@+id/frame_youtube"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:keyVideo="@{viewModel.keyVideo}"
+                android:layout_height="match_parent"
+                app:fragment="@{viewModel.fragment}"
+                app:manager="@{viewModel.manager}"
                 />
             <TextView
                 android:layout_width="match_parent"
@@ -91,31 +92,11 @@
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dp_10"
-                    android:layout_marginRight="@dimen/dp_10"
+                    android:layout_marginEnd="@dimen/dp_10"
+                    android:layout_marginStart="@dimen/dp_20"
                     android:layout_weight="1"
+                    android:background="@drawable/style_button_add"
                     android:text="@string/button_add"
-                    />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dp_10"
-                android:orientation="vertical"
-                >
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/title_productor"
-                    android:textColor="@color/color_black"
-                    android:textSize="@dimen/text_title"
-                    android:textStyle="bold"
-                    />
-                <android.support.v7.widget.RecyclerView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layoutManager="@{LayoutManagers.linearHorizontal()}"
-                    app:recyclerAdapter="@{viewModel.productorAdapter}"
                     />
             </LinearLayout>
             <LinearLayout
@@ -137,6 +118,27 @@
                     android:layout_height="wrap_content"
                     app:layoutManager="@{LayoutManagers.linearHorizontal()}"
                     app:recyclerAdapter="@{viewModel.actorAdapter}"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_10"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_productor"
+                    android:textColor="@color/color_black"
+                    android:textSize="@dimen/text_title"
+                    android:textStyle="bold"
+                    />
+                <android.support.v7.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="@{LayoutManagers.linearHorizontal()}"
+                    app:recyclerAdapter="@{viewModel.productorAdapter}"
                     />
             </LinearLayout>
             <LinearLayout

@@ -4,22 +4,21 @@ import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.view.MenuItem;
 import com.framgia.moviedb.R;
 import com.framgia.moviedb.data.model.Movie;
 import com.framgia.moviedb.data.source.MovieReposity;
 import com.framgia.moviedb.data.source.remote.MovieRemoteDataSource;
 import com.framgia.moviedb.data.source.remote.service.MovieServiceClient;
 import com.framgia.moviedb.databinding.ActivityDetailBinding;
+import com.framgia.moviedb.screen.BaseActivity;
 import com.framgia.moviedb.utils.Constant;
-import com.google.android.youtube.player.YouTubeBaseActivity;
-import com.google.android.youtube.player.YouTubeInitializationResult;
-import com.google.android.youtube.player.YouTubePlayer;
 
 /**
  * Detail Screen.
  */
-public class DetailActivity extends YouTubeBaseActivity
-        implements YouTubePlayer.OnInitializedListener {
+public class DetailActivity extends BaseActivity {
     private DetailContract.ViewModel mViewModel;
 
     public static Intent getDetailIntent(Context context, Movie movie) {
@@ -31,10 +30,13 @@ public class DetailActivity extends YouTubeBaseActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         MovieReposity mMovieReposity =
                 new MovieReposity(new MovieRemoteDataSource(MovieServiceClient.getInstance()));
         Movie mMovie = getIntent().getExtras().getParcelable(Constant.MOVIES_BUNDLE);
-        mViewModel = new DetailViewModel(getApplicationContext(), mMovie);
+        setTitle(mMovie.getTitle());
+        FragmentManager manager = getSupportFragmentManager();
+        mViewModel = new DetailViewModel(getApplicationContext(), mMovie, manager);
         DetailContract.Presenter presenter = new DetailPresenter(mViewModel, mMovieReposity);
         mViewModel.setPresenter(presenter);
         ActivityDetailBinding binding =
@@ -49,6 +51,15 @@ public class DetailActivity extends YouTubeBaseActivity
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     protected void onStop() {
         mViewModel.onStop();
         super.onStop();
@@ -58,17 +69,5 @@ public class DetailActivity extends YouTubeBaseActivity
     protected void onDestroy() {
         mViewModel.onDestroy();
         super.onDestroy();
-    }
-
-    @Override
-    public void onInitializationSuccess(YouTubePlayer.Provider provider,
-            YouTubePlayer youTubePlayer, boolean b) {
-
-    }
-
-    @Override
-    public void onInitializationFailure(YouTubePlayer.Provider provider,
-            YouTubeInitializationResult youTubeInitializationResult) {
-
     }
 }
