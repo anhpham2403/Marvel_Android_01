@@ -45,7 +45,7 @@ public interface MovieApi {
             @Query("api_key") String apiKey, @Query("page") int page);
 
     @GET("discover/movie")
-    Observable<MovieResponse> getMoviesByIdActor(@Path("with_people") int id,
+    Observable<MovieResponse> getMoviesByIdActor(@Query("with_people") int id,
             @Query("api_key") String apiKey, @Query("page") int page);
 
     @GET("discover/movie")

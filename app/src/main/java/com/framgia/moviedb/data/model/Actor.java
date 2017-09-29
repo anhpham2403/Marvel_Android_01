@@ -46,7 +46,6 @@ public class Actor extends BaseModel implements Parcelable {
         mAvatarUrl = in.readString();
         mBiography = in.readString();
         mPlaceOfBirth = in.readString();
-        mBirthday = new Date(in.readLong());
     }
 
     @Bindable
@@ -81,6 +80,5 @@ public class Actor extends BaseModel implements Parcelable {
         parcel.writeString(mAvatarUrl);
         parcel.writeString(mBiography);
         parcel.writeString(mPlaceOfBirth);
-        parcel.writeLong(mBirthday.getTime());
     }
 }

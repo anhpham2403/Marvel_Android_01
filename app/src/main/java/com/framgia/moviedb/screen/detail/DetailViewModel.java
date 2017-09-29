@@ -10,6 +10,7 @@ import com.framgia.moviedb.BR;
 import com.framgia.moviedb.data.model.Actor;
 import com.framgia.moviedb.data.model.Genre;
 import com.framgia.moviedb.data.model.Movie;
+import com.framgia.moviedb.data.model.Productor;
 import com.framgia.moviedb.screen.genres.GenreAdapter;
 import com.framgia.moviedb.screen.listmovies.MoviesActivity;
 import com.framgia.moviedb.screen.youtube.YoutubeFragment;
@@ -20,7 +21,8 @@ import java.util.List;
  */
 
 public class DetailViewModel extends BaseObservable
-        implements DetailContract.ViewModel, GenreAdapter.OnItemClickListener {
+        implements DetailContract.ViewModel, GenreAdapter.OnItemClickListener,
+        ActorAdapter.OnItemClick, ProductorAdapter.OnItemClick {
     private Movie mMovie;
     private DetailContract.Presenter mPresenter;
     private Context mContext;
@@ -77,7 +79,7 @@ public class DetailViewModel extends BaseObservable
     public void getDataMovieSuccess(Movie movie) {
         setMovie(movie);
         setGenreAdapter(new GenreAdapter(movie.getGenres(), this));
-        setProductorAdapter(new ProductorAdapter(movie.getProductors()));
+        setProductorAdapter(new ProductorAdapter(movie.getProductors(), this));
     }
 
     @Override
@@ -87,7 +89,7 @@ public class DetailViewModel extends BaseObservable
 
     @Override
     public void getDataActorsSuccess(List<Actor> actors) {
-        setActorAdapter(new ActorAdapter(actors));
+        setActorAdapter(new ActorAdapter(actors, this));
     }
 
     @Override
@@ -137,7 +139,7 @@ public class DetailViewModel extends BaseObservable
 
     @Override
     public void onItemClickListener(Genre genre) {
-        mContext.startActivity(MoviesActivity.getIntentMoviesOfGenre(mContext, genre));
+        mContext.startActivity(MoviesActivity.getIntentMoviesActivity(mContext, genre));
     }
 
     @Bindable
@@ -153,5 +155,15 @@ public class DetailViewModel extends BaseObservable
     public void setFragment(Fragment fragment) {
         mFragment = fragment;
         notifyPropertyChanged(BR.fragment);
+    }
+
+    @Override
+    public void onItemClick(Actor actor) {
+        mContext.startActivity(MoviesActivity.getIntentMoviesActivity(mContext, actor));
+    }
+
+    @Override
+    public void onItemClick(Productor productor) {
+        mContext.startActivity(MoviesActivity.getIntentMoviesActivity(mContext, productor));
     }
 }

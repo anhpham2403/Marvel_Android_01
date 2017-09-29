@@ -67,6 +67,6 @@ public class GenresViewModel extends BaseObservable
 
     @Override
     public void onItemClickListener(Genre genre) {
-        mContext.startActivity(MoviesActivity.getIntentMoviesOfGenre(mContext, genre));
+        mContext.startActivity(MoviesActivity.getIntentMoviesActivity(mContext, genre));
     }
 }
