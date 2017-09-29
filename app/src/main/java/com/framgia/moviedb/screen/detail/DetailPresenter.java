@@ -78,6 +78,29 @@ public class DetailPresenter implements DetailContract.Presenter {
                 }));
     }
 
+    @Override
+    public void getTrailer(int id) {
+        mDisposable.add(mMovieReposity.getTrailer(BuildConfig.API_KEY, id)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<String>() {
+                    @Override
+                    public void onNext(String value) {
+                        mViewModel.getTrailerSuccess(value);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        mViewModel.getTrailerFailure(e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                }));
+    }
+
     public void onDestroy() {
         mDisposable.dispose();
     }

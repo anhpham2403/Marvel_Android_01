@@ -3,6 +3,7 @@ package com.framgia.moviedb.data.source;
 import com.framgia.moviedb.data.model.Actor;
 import com.framgia.moviedb.data.model.Genre;
 import com.framgia.moviedb.data.model.Movie;
+import com.framgia.moviedb.data.model.Productor;
 import io.reactivex.Observable;
 import java.util.List;
 
@@ -30,4 +31,10 @@ public interface MovieDataSource {
     Observable<List<Movie>> getMoviesByIdActor(int id, String apiKey, int page);
 
     Observable<List<Movie>> getMoviesByIdProductor(int id, String apiKey, int page);
+
+    Observable<Actor> getActor(String apiKey, int id);
+
+    Observable<Productor> getProductor(String apiKey, int id);
+
+    Observable<String> getTrailer(String apiKey, int id);
 }

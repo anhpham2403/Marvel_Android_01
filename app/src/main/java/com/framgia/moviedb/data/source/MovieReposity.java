@@ -3,6 +3,7 @@ package com.framgia.moviedb.data.source;
 import com.framgia.moviedb.data.model.Actor;
 import com.framgia.moviedb.data.model.Genre;
 import com.framgia.moviedb.data.model.Movie;
+import com.framgia.moviedb.data.model.Productor;
 import com.framgia.moviedb.data.source.remote.MovieRemoteDataSource;
 import io.reactivex.Observable;
 import java.util.List;
@@ -66,5 +67,20 @@ public class MovieReposity implements MovieDataSource {
     @Override
     public Observable<List<Movie>> getMoviesByIdProductor(int id, String apiKey, int page) {
         return mRemoteDataSource.getMoviesByIdProductor(id, apiKey, page);
+    }
+
+    @Override
+    public Observable<Actor> getActor(String apiKey, int id) {
+        return mRemoteDataSource.getActor(apiKey, id);
+    }
+
+    @Override
+    public Observable<Productor> getProductor(String apiKey, int id) {
+        return mRemoteDataSource.getProductor(apiKey, id);
+    }
+
+    @Override
+    public Observable<String> getTrailer(String apiKey, int id) {
+        return mRemoteDataSource.getTrailer(apiKey, id);
     }
 }
