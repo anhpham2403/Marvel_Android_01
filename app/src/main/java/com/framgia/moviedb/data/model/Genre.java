@@ -25,6 +25,9 @@ public class Genre extends BaseModel implements Parcelable {
     @Expose
     private String mName;
 
+    public Genre() {
+    }
+
     protected Genre(Parcel in) {
         setId(in.readInt());
         mName = in.readString();

@@ -56,6 +56,18 @@ public class MoviesViewModel extends BaseObservable
         mAdapter = new MovieAdapter(mMovies, this);
     }
 
+    public MoviesViewModel(Context context) {
+        mContext = context;
+    }
+
+    public void setCategory(int category) {
+        mCategory = category;
+    }
+
+    public void setId(int id) {
+        mId = id;
+    }
+
     @Override
     public void onStart() {
         mPresenter.onStart();

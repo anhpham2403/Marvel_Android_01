@@ -51,6 +51,9 @@ public class Movie extends BaseModel implements Parcelable {
     @Expose
     private List<Genre> mGenres;
 
+    public Movie() {
+    }
+
     protected Movie(Parcel in) {
         setId(in.readInt());
         mTitle = in.readString();

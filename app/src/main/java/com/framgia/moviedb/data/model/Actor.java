@@ -40,6 +40,9 @@ public class Actor extends BaseModel implements Parcelable {
     @Expose
     private String mPlaceOfBirth;
 
+    public Actor() {
+    }
+
     protected Actor(Parcel in) {
         setId(in.readInt());
         mName = in.readString();

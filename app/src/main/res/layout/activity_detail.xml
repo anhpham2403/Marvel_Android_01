@@ -114,6 +114,7 @@
                     android:textStyle="bold"
                     />
                 <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_productor"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layoutManager="@{LayoutManagers.linearHorizontal()}"
@@ -135,6 +136,7 @@
                     android:textStyle="bold"
                     />
                 <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_actor"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layoutManager="@{LayoutManagers.linearHorizontal()}"
@@ -156,6 +158,7 @@
                     android:textStyle="bold"
                     />
                 <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_genre"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layoutManager="@{LayoutManagers.linearHorizontal()}"
