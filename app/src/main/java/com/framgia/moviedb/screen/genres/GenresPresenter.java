@@ -50,7 +50,6 @@ public class GenresPresenter implements GenresContract.Presenter {
 
                     @Override
                     public void onComplete() {
-
                     }
                 }));
     }
